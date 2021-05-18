@@ -1,5 +1,11 @@
 import React from "react";
-import { TextField, List, Datagrid, BooleanField } from "react-admin";
+import {
+  TextField,
+  List,
+  Datagrid,
+  BooleanField,
+  DateField,
+} from "react-admin";
 import { DriverFilter } from "./DriverFilter";
 
 export const DriverList = (props) => (
@@ -9,6 +15,7 @@ export const DriverList = (props) => (
       <TextField source="lastName" />
       <BooleanField source="status" />
       <TextField source="phoneNumber" />
+      <DateField source="createdAt" />
     </Datagrid>
   </List>
 );

@@ -6,7 +6,10 @@ export const CustomerList = (props) => (
     <Datagrid>
       <TextField source="firstName" />
       <TextField source="lastName" />
+      <TextField source="email" />
       <TextField source="phoneNumber" />
+      <TextField source="createdAt" />
+      <TextField source="updatedAt" />
     </Datagrid>
   </List>
 );

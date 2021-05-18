@@ -1,5 +1,13 @@
 import React from "react";
-import { SimpleForm, TextInput, Create } from "react-admin";
+import {
+  SimpleForm,
+  TextInput,
+  Create,
+  DateInput,
+  BooleanInput,
+  ReferenceInput,
+  SelectInput,
+} from "react-admin";
 
 export const DriverCreate = (props) => (
   <Create {...props}>
@@ -7,6 +15,12 @@ export const DriverCreate = (props) => (
       <TextInput source="firstName" />
       <TextInput source="lastName" />
       <TextInput source="phoneNumber" />
+      <BooleanInput source="status" />
+      <DateInput source="createdAt" />
+      <DateInput source="updatedAt" />
+      <ReferenceInput label="Addresse" source="address" reference="addresses">
+        <SelectInput optionText="city" />
+      </ReferenceInput>
     </SimpleForm>
   </Create>
 );

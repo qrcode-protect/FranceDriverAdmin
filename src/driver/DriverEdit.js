@@ -8,6 +8,8 @@ import {
   useRefresh,
   useRedirect,
   BooleanInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 export const DriverEdit = (props) => {
@@ -32,6 +34,9 @@ export const DriverEdit = (props) => {
         <TextInput multiline source="phoneNumber" />
         <BooleanInput label="status" source="status" />
         <DateInput source="updateAt" />
+        <ReferenceInput label="Addresse" source="address" reference="addresses">
+          <SelectInput optionText="id" />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

@@ -10,7 +10,6 @@ import config from "./config";
 import drivers from "./driver";
 import addresses from "./address";
 import customers from "./customer";
-import driversdocs from "./driverdoc";
 
 import { Dashboard } from "./components";
 import MyLayout from "./Layout";
@@ -18,7 +17,7 @@ import Theme from "./Theme";
 import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 
-const entrypoint = "http://34.73.95.40";
+const entrypoint = "http://104.155.24.90";
 firebase.initializeApp(config);
 const authProvider = FirebaseAuthProvider(config);
 const dataProvider = hydraDataProvider(
@@ -39,7 +38,11 @@ function App() {
       entrypoint={entrypoint}
       authProvider={authProvider}
       customRoutes={CustomRoutes}
-    ></HydraAdmin>
+    >
+      <Resource name="drivers" {...drivers} />
+      <Resource name="customers" {...customers} />
+      <Resource name="addresses" {...addresses} />
+    </HydraAdmin>
   );
 }
 
