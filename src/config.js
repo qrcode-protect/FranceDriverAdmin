@@ -1,11 +1,12 @@
 const config = {
-  apiKey: "AIzaSyCU34jVXobIHOaQTTOc4PiUplsWHbsRsRQ",
-  authDomain: "application-269a2.firebaseapp.com",
-  projectId: "application-269a2",
-  storageBucket: "application-269a2.appspot.com",
-  messagingSenderId: "260633432666",
-  appId: "1:260633432666:web:91c3307e042deebbf57e63",
-  measurementId: "G-M2LHZR4NBJ",
+  apiKey: "AIzaSyBfwXviJIO2A5oLJNLAnuzOFlit9QHoW0E",
+  authDomain: "france-driver-live.firebaseapp.com",
+  databaseURL: "https://france-driver-live.firebaseio.com",
+  projectId: "france-driver-live",
+  storageBucket: "france-driver-live.appspot.com",
+  messagingSenderId: "318612917710",
+  appId: "1:318612917710:web:f6522ed6a5d5dd35c9ef9f",
+  measurementId: "G-BX2MGZSHMX",
 };
 
 export default config;
