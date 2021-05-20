@@ -10,12 +10,14 @@ import config from "./config";
 import drivers from "./driver";
 import addresses from "./address";
 import customers from "./customer";
-
+import trips from "./trip";
+import vehicles from "./vehicle";
 import { Dashboard } from "./components";
 import MyLayout from "./Layout";
 import Theme from "./Theme";
 import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
+import mediaObjects from "./mediaObject";
 
 const entrypoint = "http://104.155.24.90";
 firebase.initializeApp(config);
@@ -42,6 +44,9 @@ function App() {
       <Resource name="drivers" {...drivers} />
       <Resource name="customers" {...customers} />
       <Resource name="addresses" {...addresses} />
+      <Resource name="media_objects" {...mediaObjects} />
+      <Resource name="trips" {...trips} />
+      <Resource name="vehicles" {...vehicles} />
     </HydraAdmin>
   );
 }
