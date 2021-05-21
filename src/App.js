@@ -19,7 +19,7 @@ import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 import mediaObjects from "./mediaObject";
 
-const entrypoint = "http://104.155.24.90";
+const entrypoint = "http://127.0.0.1";
 firebase.initializeApp(config);
 const authProvider = FirebaseAuthProvider(config);
 const dataProvider = hydraDataProvider(

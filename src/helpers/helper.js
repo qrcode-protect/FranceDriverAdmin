@@ -11,5 +11,5 @@ export const GetAvatarUrl = ({ record }) => {
 export const GetImageUrl = ({ record }) => {
   let dataUrl = url + record.contentUrl;
   // {process.env.REACT_APP_API_ENTRYPOINT}
-  return <img style={{ maxWidth: 300, maxHeight: 300 }} src={dataUrl} />;
+  return <img alt="" style={{ maxWidth: 300, maxHeight: 300 }} src={dataUrl} />;
 };

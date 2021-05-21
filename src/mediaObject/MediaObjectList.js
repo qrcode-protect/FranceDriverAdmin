@@ -1,7 +1,7 @@
 import React from "react";
-import { useListContext, EditButton, List } from "react-admin";
+import { useListContext, List } from "react-admin";
 import { Card, CardContent, Checkbox } from "@material-ui/core";
-import CardActions from "@material-ui/core/CardActions";
+
 import { GetImageUrl } from "../helpers/helper";
 
 const cardStyle = {
