@@ -6,7 +6,7 @@ pipeline {
         stage('Pull') {
             steps {
                 dir('/home/france_driverfr/FranceDriverAdmin') {
-                    sh 'git pull origin/feature'
+                    sh 'git pull https://github.com/qrcode-protect/FranceDriverAdmin.git'
                 }
             }
         }
