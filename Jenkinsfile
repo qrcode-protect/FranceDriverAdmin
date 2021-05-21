@@ -17,12 +17,5 @@ pipeline {
                 }
             }
         }
-        stage('Pm2') {
-            steps {
-                dir('/home/france_driverfr/FranceDriverAdmin') {
-                    sh 'pm2 restart franceadmin'
-                }
-            }
-        }
     }
 }
