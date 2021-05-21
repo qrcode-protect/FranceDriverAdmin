@@ -44,7 +44,7 @@ function App() {
       <Resource name="drivers" {...drivers} />
       <Resource name="customers" {...customers} />
       <Resource name="addresses" {...addresses} />
-      <Resource {...mediaObjects} />
+      <Resource name="media_objects" {...mediaObjects} />
       <Resource name="trips" {...trips} />
       <Resource name="vehicles" {...vehicles} />
     </HydraAdmin>
