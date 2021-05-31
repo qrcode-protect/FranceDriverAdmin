@@ -8,7 +8,7 @@ import {
   FileField,
 } from "react-admin";
 
-export const MediaObjectCreate = (props) => (
+export const DriverDocCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <FileInput source="file">
