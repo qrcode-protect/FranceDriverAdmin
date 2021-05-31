@@ -1,5 +1,5 @@
 import Link from "@material-ui/core/Link";
-const url = "http://localhost";
+const url = "http://104.155.24.90";
 
 export const GetLink = ({ record }) => {
   let data = url + record.contentUrl;
