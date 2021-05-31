@@ -10,6 +10,7 @@ import {
   BooleanInput,
   ReferenceInput,
   SelectInput,
+  FileInput,
 } from "react-admin";
 
 export const DriverEdit = (props) => {

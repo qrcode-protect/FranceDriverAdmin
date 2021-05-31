@@ -1,15 +1,16 @@
-import Avatar from "@material-ui/core/Avatar";
+import Link from "@material-ui/core/Link";
+const url = "http://localhost";
 
-const url = "http://104.155.24.90";
-
-export const GetAvatarUrl = ({ record }) => {
-  let dataUrl = url + record.contentUrl;
+export const GetLink = ({ record }) => {
+  let data = url + record.contentUrl;
   // {process.env.REACT_APP_API_ENTRYPOINT}
-  return <Avatar variant="square" src={dataUrl} />;
+  return <Link href={data}>{record.contentUrl} </Link>;
 };
 
 export const GetImageUrl = ({ record }) => {
-  let dataUrl = url + record.contentUrl;
+  let data = url + record.contentUrl;
   // {process.env.REACT_APP_API_ENTRYPOINT}
-  return <img alt="" style={{ maxWidth: 300, maxHeight: 300 }} src={dataUrl} />;
+
+  // eslint-disable-next-line jsx-a11y/alt-text
+  return <img style={{ maxWidth: 300, maxHeight: 300 }} src={data} />;
 };

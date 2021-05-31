@@ -1,39 +1,12 @@
 import React from "react";
-import { useListContext, List } from "react-admin";
-import { Card, CardContent, Checkbox } from "@material-ui/core";
 
-import { GetImageUrl } from "../helpers/helper";
-
-const cardStyle = {
-  width: 300,
-  minHeight: 300,
-  margin: "0.5em",
-  display: "inline-block",
-  verticalAlign: "top",
-};
-
-const ImageGrid = ({ selected, selectable, onToggleItem }) => {
-  const { ids, data } = useListContext();
-  return (
-    <div style={{ margin: "1em" }}>
-      {ids.map((id) => (
-        <Card key={id} style={cardStyle}>
-          <CardContent>
-            <Checkbox
-              checked={selected}
-              disabled={selectable}
-              onClick={(event) => onToggleItem(id, event)}
-            />
-            <GetImageUrl record={data[id]} />
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-};
+import { List, Datagrid } from "react-admin";
+import { GetLink } from "../helpers/helper";
 
 export const MediaObjectList = (props) => (
   <List {...props}>
-    <ImageGrid />
+    <Datagrid>
+      <GetLink />
+    </Datagrid>
   </List>
 );
