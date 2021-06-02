@@ -20,13 +20,5 @@ pipeline {
                 }
             }
         }
-        stage('Reaload') {
-            steps {
-                dir(env.home){
-                    sh 'pm2 restart franceadmin'
-                }
-               
-            }
-        }
     }
 }
