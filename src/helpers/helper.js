@@ -1,5 +1,7 @@
 import Link from "@material-ui/core/Link";
-const url = "http://104.155.24.90";
+
+const url = process.env.REACT_APP_ENTRY_POINT;
+
 
 export const GetLink = ({ record }) => {
   let data = url + record.contentUrl;
@@ -10,7 +12,5 @@ export const GetLink = ({ record }) => {
 export const GetImageUrl = ({ record }) => {
   let data = url + record.contentUrl;
   // {process.env.REACT_APP_API_ENTRYPOINT}
-
-  // eslint-disable-next-line jsx-a11y/alt-text
-  return <img style={{ maxWidth: 300, maxHeight: 300 }} src={data} />;
+  return <img alt="" style={{ maxWidth: 300, maxHeight: 300 }} src={data} />;
 };

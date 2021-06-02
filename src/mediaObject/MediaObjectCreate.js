@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  SimpleForm,
-  Create,
-  ImageInput,
-  ImageField,
-  FileInput,
-  FileField,
-} from "react-admin";
+import { SimpleForm, Create, FileInput, FileField } from "react-admin";
 
 export const MediaObjectCreate = (props) => (
   <Create {...props}>

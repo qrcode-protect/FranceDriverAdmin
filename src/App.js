@@ -15,14 +15,16 @@ import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicledocs from "./vehicleDoc";
 
-import { Dashboard } from "./components";
+import { Dashboard, Formulaire } from "./components";
 import MyLayout from "./Layout";
 import Theme from "./Theme";
 import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 import mediaObjects from "./mediaObject";
 
-const entrypoint = "http://104.155.24.90";
+const entrypoint = process.env.REACT_APP_ENTRY_POINT;
+
+
 firebase.initializeApp(config);
 const authProvider = FirebaseAuthProvider(config);
 const dataProvider = hydraDataProvider(
@@ -39,6 +41,7 @@ function App() {
       loginPage={LoginPage}
       layout={MyLayout}
       dashboard={Dashboard}
+      formulaire={Formulaire}
       dataProvider={dataProvider}
       entrypoint={entrypoint}
       authProvider={authProvider}
