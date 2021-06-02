@@ -3,22 +3,17 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   SimpleForm,
   TextInput,
-  Create,
   FileInput,
   FileField,
   DateInput,
-  BooleanInput,
+
 } from "react-admin";
 
-const useStyles = makeStyles((theme) => ({}));
 
 export function Formulaire() {
-  const classes = useStyles();
-
   return (
     <div>
       <Grid>
