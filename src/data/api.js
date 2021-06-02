@@ -1,6 +1,6 @@
+import axios from "axios"
 const url = process.env.REACT_APP_ENTRY_POINT;
 
-const axios = require("axios");
 /**
  * post a customer
  * @param newCustomer object like {
