@@ -3,6 +3,7 @@ pipeline {
     agent any
     environment {
         dir = '/home/france_driverfr/FranceDriverAdmin'
+        home = '/home'
     }
     stages {
         stage('Pull') {
@@ -21,7 +22,10 @@ pipeline {
         }
         stage('Reaload') {
             steps {
-                sh 'pm2 restart franceadmin'
+                dir(env.home){
+                    sh 'pm2 restart franceadmin'
+                }
+               
             }
         }
     }
