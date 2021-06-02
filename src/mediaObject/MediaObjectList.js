@@ -18,26 +18,6 @@ const cardStyle = {
   verticalAlign: "top",
 };
 
-// const ImageGrid = ({ selected, selectable, onToggleItem }) => {
-//   const { ids, data } = useListContext();
-//   return (
-//     <div style={{ margin: "1em" }}>
-//       {ids.map((id) => (
-//         <Card key={id} style={cardStyle}>
-//           <CardContent>
-//             <Checkbox
-//               checked={selected}
-//               disabled={selectable}
-//               onClick={(event) => onToggleItem(id, event)}
-//             />
-//             <GetImageUrl record={data[id]} />
-//           </CardContent>
-//         </Card>
-//       ))}
-//     </div>
-//   );
-// };
-
 export const MediaObjectList = (props) => (
   <List {...props}>
     <Datagrid>

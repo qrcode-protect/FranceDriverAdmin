@@ -15,7 +15,7 @@ import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicledocs from "./vehicleDoc";
 
-import { Dashboard } from "./components";
+import { Dashboard, Formulaire } from "./components";
 import MyLayout from "./Layout";
 import Theme from "./Theme";
 import CustomRoutes from "./CustomRoutes";
@@ -39,6 +39,7 @@ function App() {
       loginPage={LoginPage}
       layout={MyLayout}
       dashboard={Dashboard}
+      formulaire={Formulaire}
       dataProvider={dataProvider}
       entrypoint={entrypoint}
       authProvider={authProvider}

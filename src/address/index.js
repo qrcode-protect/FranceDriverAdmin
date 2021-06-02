@@ -7,7 +7,7 @@ import LocationCityIcon from "@material-ui/icons/LocationCity";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  // list: AddressList,
+  list: AddressList,
   show: AddressShow,
   edit: AddressEdit,
   create: AddressCreate,
