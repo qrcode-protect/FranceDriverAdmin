@@ -21,9 +21,7 @@ pipeline {
         }
         stage('Reaload') {
             steps {
-                dir(env.dir) {
-                    sh 'pm2 restart franceadmin'
-                }
+                sh 'pm2 restart franceadmin'
             }
         }
     }
