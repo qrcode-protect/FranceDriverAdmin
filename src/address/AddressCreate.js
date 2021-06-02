@@ -6,7 +6,7 @@ import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import { postAdress } from "../components/data";
+import { postAdress } from "../data/api";
 import { useRedirect } from "react-admin";
 
 const useStyles = makeStyles((theme) => ({

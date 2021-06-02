@@ -22,7 +22,8 @@ import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 import mediaObjects from "./mediaObject";
 
-const entrypoint = "http://localhost";
+const entrypoint = process.env.REACT_APP_ENTRY_POINT;
+console.log(process.env.REACT_APP_ENTRY_POINT);
 firebase.initializeApp(config);
 const authProvider = FirebaseAuthProvider(config);
 const dataProvider = hydraDataProvider(

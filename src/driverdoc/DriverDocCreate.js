@@ -2,8 +2,6 @@ import React from "react";
 import {
   SimpleForm,
   Create,
-  ImageInput,
-  ImageField,
   FileInput,
   FileField,
 } from "react-admin";

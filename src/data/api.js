@@ -1,3 +1,5 @@
+const url = process.env.REACT_APP_ENTRY_POINT;
+
 const axios = require("axios");
 /**
  * post a customer
@@ -15,7 +17,7 @@ const axios = require("axios");
  */
 
 const postCustomer = (newCustomer) => {
-  return axios.post("http://localhost/customers", newCustomer);
+  return axios.post(url + "/customers", newCustomer);
 };
 
 /**
@@ -28,7 +30,7 @@ const postCustomer = (newCustomer) => {
  * }
  */
 const postAdress = (newAdress) => {
-  return axios.post("http://localhost/addresses", newAdress);
+  return axios.post(url + "/addresses", newAdress);
 };
 
 export { postCustomer, postAdress };
