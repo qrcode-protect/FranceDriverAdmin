@@ -14,6 +14,7 @@ export const DriverShow = (props) => (
         <TextField source="firstName" />
         <TextField source="lastName" />
         <TextField source="phoneNumber" />
+        <TextField source="driverDocs" />
       </Tab>
       <Tab label="Address" path="addresses">
         <ReferenceField source="address" reference="addresses" addLabel={false}>
