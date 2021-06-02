@@ -9,11 +9,6 @@ export const CustomerList = (props) => (
       <ReferenceField source="address" reference="addresses" addLabel={false}>
         <TextField source="street" />
       </ReferenceField>
-
-      {/* <TextField source="email" /> */}
-      {/* <TextField source="phoneNumber" /> */}
-      {/* <TextField source="createdAt" /> */}
-      {/* <TextField source="updatedAt" /> */}
       <TextField source="image" />
     </Datagrid>
   </List>
