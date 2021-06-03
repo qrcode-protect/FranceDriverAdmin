@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 const url = process.env.REACT_APP_ENTRY_POINT;
 
 /**
@@ -33,4 +33,15 @@ const postAdress = (newAdress) => {
   return axios.post(url + "/addresses", newAdress);
 };
 
-export { postCustomer, postAdress };
+const upload = (file) => {
+  let formData = new FormData();
+  formData.append("file", file);
+  return axios.post(url + "/media_objects", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      accept: "application/ld+json",
+    },
+  });
+};
+
+export { postCustomer, postAdress, upload };

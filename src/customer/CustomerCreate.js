@@ -1,11 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import { postAdress, postCustomer } from "../data/api";
+import { postAdress, postCustomer, upload } from "../data/api";
 import { useRedirect } from "react-admin";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function CustomerCreate() {
   const classes = useStyles();
+  const [files, setfiles] = useState("");
   const redirect = useRedirect();
   const formik = useFormik({
     initialValues: {
@@ -37,22 +39,25 @@ export function CustomerCreate() {
       updatedAt: Date,
       address: "",
       email: "",
-      // image: "",
+      image: "",
       street: "",
       city: "",
       postalCode: "",
     },
     onSubmit: (values) => {
-      postAdress(values).then((resp) => {
-        console.log(resp.data["@id"]);
-        values.address = resp.data["@id"];
-        postCustomer(values)
-          .then((res) => {
-            redirect("/customers");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      upload(files).then((respo) => {
+        values.image = respo.data["@id"];
+        postAdress(values).then((resp) => {
+          console.log(resp.data["@id"]);
+          values.address = resp.data["@id"];
+          postCustomer(values)
+            .then((res) => {
+              redirect("/customers");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
       });
     },
   });
@@ -61,14 +66,17 @@ export function CustomerCreate() {
       <h1>Création d'un Customer</h1>
       <Card className={classes.bodyCard}>
         <CardContent>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={(e) => {
+              console.log(e.target.files[0]);
+              setfiles(e.target.files[0]);
+            }}
+            accept="image/png, image/jpeg"
+          />
           <form onSubmit={formik.handleSubmit} className={classes.contentCard}>
-            {/* <input
-              type="file"
-              id="image"
-              name="image"
-              accept="image/png, image/jpeg"
-            /> */}
-
             <TextField
               id="firstName"
               name="firstName"
@@ -76,6 +84,7 @@ export function CustomerCreate() {
               value={formik.values.firstName}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
             <TextField
               id="lastName"
@@ -84,6 +93,7 @@ export function CustomerCreate() {
               value={formik.values.lastName}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
@@ -93,6 +103,7 @@ export function CustomerCreate() {
               value={formik.values.idfirebase}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
@@ -102,6 +113,7 @@ export function CustomerCreate() {
               value={formik.values.phoneNumber}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
@@ -112,6 +124,7 @@ export function CustomerCreate() {
               value={formik.values.email}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
@@ -121,6 +134,7 @@ export function CustomerCreate() {
               value={formik.values.street}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
@@ -130,6 +144,7 @@ export function CustomerCreate() {
               value={formik.values.city}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
@@ -139,6 +154,7 @@ export function CustomerCreate() {
               value={formik.values.postalCode}
               onChange={formik.handleChange}
               variant="filled"
+              required
             />
 
             <TextField
