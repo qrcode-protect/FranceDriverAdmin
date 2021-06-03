@@ -4,11 +4,8 @@ import {
   TextInput,
   Create,
   DateInput,
-  required,
   BooleanInput,
 } from "react-admin";
-import DriverReferenceInput from "./DriverReferenceInput";
-import DriverDocReferenceInput from "./DriverDocReferenceInput";
 
 export const DriverCreate = (props) => (
   <Create {...props}>
@@ -19,22 +16,6 @@ export const DriverCreate = (props) => (
       <BooleanInput source="status" />
       <DateInput source="createdAt" />
       <DateInput source="updatedAt" />
-      <DriverReferenceInput
-        source="address"
-        reference="addresses"
-        allowEmpty
-        validate={required()}
-        perPage={10000}
-        label="Adresse"
-      />
-      <DriverDocReferenceInput
-        source="mediaObject"
-        reference="mediaObjects"
-        allowEmpty
-        validate={required()}
-        perPage={10000}
-        label="Document du conducteur"
-      />
     </SimpleForm>
   </Create>
 );

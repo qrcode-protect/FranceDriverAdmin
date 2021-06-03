@@ -6,16 +6,13 @@ import {
   DateInput,
   useNotify,
   useRefresh,
-  useRedirect,
 } from "react-admin";
 
 export const AddressEdit = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
-  const redirect = useRedirect();
   const onSuccess = ({ data }) => {
     notify(`Changes to Driver "${data.fistName}" saved`);
-    redirect("/drivers");
     refresh();
   };
   return (

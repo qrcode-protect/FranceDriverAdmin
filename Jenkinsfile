@@ -3,6 +3,7 @@ pipeline {
     agent any
     environment {
         dir = '/home/france_driverfr/FranceDriverAdmin'
+        home = '/home'
     }
     stages {
         stage('Pull') {

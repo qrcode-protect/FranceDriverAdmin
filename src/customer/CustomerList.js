@@ -1,15 +1,15 @@
 import React from "react";
-import { List, Datagrid, TextField } from "react-admin";
+import { List, Datagrid, TextField, ReferenceField } from "react-admin";
 
 export const CustomerList = (props) => (
   <List {...props}>
     <Datagrid>
       <TextField source="firstName" />
       <TextField source="lastName" />
-      <TextField source="email" />
-      <TextField source="phoneNumber" />
-      <TextField source="createdAt" />
-      <TextField source="updatedAt" />
+      <ReferenceField source="address" reference="addresses" addLabel={false}>
+        <TextField source="street" />
+      </ReferenceField>
+      <TextField source="image" />
     </Datagrid>
   </List>
 );
