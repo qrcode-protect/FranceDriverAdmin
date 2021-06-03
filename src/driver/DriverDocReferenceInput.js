@@ -25,7 +25,6 @@ const PostReferenceDocInput = (props) => {
       <ReferenceInput key={version} {...props}>
         <AutocompleteInput optionText="id" />
       </ReferenceInput>
-
       {!!values.address && <QuickPreviewDocButton id={values.mediaObject} />}
     </div>
   );
