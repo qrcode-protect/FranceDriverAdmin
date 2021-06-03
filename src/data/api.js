@@ -56,6 +56,7 @@ const postAdress = (newAdress) => {
 const upload = (file) => {
   let formData = new FormData();
   formData.append('file', file);
+
   return axios.post(url + "/media_objects", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -75,6 +76,7 @@ const postDriverDoc = (fileIdentity, fileVtc) => {
       });
     });
   });
+
 };
 
 export { postCustomer, postAdress, postDriver, postDriverDoc, upload };

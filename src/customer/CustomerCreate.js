@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function CustomerCreate() {
   const classes = useStyles();
-  const [files, setfiles] = useState('');
+  const [files, setfiles] = useState();
   const [send, setSend] = useState(false);
   const redirect = useRedirect();
   const formik = useFormik({
@@ -56,18 +56,19 @@ export function CustomerCreate() {
     onSubmit: (values) => {
       setSend(true);
       upload(files).then((respo) => {
-        values.image = respo.data["@id"];
-        postAdress(values).then((resp) => {
-          console.log(resp.data["@id"]);
-          values.address = resp.data["@id"];
-          postCustomer(values)
-            .then((res) => {
-              redirect("/customers");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
+        console.log(respo.data);
+        // values.image = respo.data["@id"];
+        // postAdress(values).then((resp) => {
+        //   console.log(resp.data["@id"]);
+        //   values.address = resp.data["@id"];
+        //   postCustomer(values)
+        //     .then((res) => {
+        //       redirect("/customers");
+        //     })
+        //     .catch((error) => {
+        //       console.log(error);
+        //     });
+        // });
       });
     },
   });
@@ -82,12 +83,13 @@ export function CustomerCreate() {
             name="image"
             onChange={(e) => {
               setfiles(e.target.files[0]);
+              console.log(e.target.files)
             }}
             accept="image/png, image/jpeg"
             multiple
           />
           <form onSubmit={formik.handleSubmit} className={classes.contentCard}>
-            <TextField
+            {/* <TextField
               id="firstName"
               name="firstName"
               label="FirstName"
@@ -186,7 +188,7 @@ export function CustomerCreate() {
               onChange={formik.handleChange}
               variant="filled"
               required
-            />
+            /> */}
 
             {!send ? (
               <Button

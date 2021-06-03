@@ -4,8 +4,10 @@ import { List, Datagrid, TextField } from "react-admin";
 export const DriverDocList = (props) => (
   <List {...props}>
     <Datagrid>
-      <TextField source="driver" />
-      <TextField source="mediaObject" />
+      <TextField source="id" />
+
+      <TextField source="identity" />
+      <TextField source="vtcCard" />
     </Datagrid>
   </List>
 );
