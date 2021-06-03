@@ -55,7 +55,11 @@ const postAdress = (newAdress) => {
 
 const upload = (file) => {
   let formData = new FormData();
-  formData.append("file", file);
+  // for (let i = 0; i < file.length; i++) {
+  //   formData.append('files', file[i]);
+  //   console.log(file[i])
+  // }
+  formData.append('files', file[0]);
   return axios.post(url + "/media_objects", formData, {
     headers: {
       "Content-Type": "multipart/form-data",

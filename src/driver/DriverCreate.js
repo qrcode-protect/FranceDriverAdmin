@@ -40,14 +40,6 @@ export function DriverCreate() {
   const [vtcCard, setvtcCard] = useState("");
   const redirect = useRedirect();
 
-  function sendFiles() {
-    console.log("send");
-    upload(identity).then((response) => {
-      postDriverDoc(response.data["@id"]);
-      console.log(response);
-    });
-  }
-
   const formik = useFormik({
     initialValues: {
       firstName: "",
