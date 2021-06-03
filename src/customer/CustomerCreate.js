@@ -5,6 +5,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { postAdress, postCustomer, upload } from "../data/api";
 import { useRedirect } from "react-admin";
@@ -23,11 +25,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  CircularProgress: {
+    margin: 20,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 }));
 
 export function CustomerCreate() {
   const classes = useStyles();
   const [files, setfiles] = useState("");
+  const [send, setSend] = useState(false);
   const redirect = useRedirect();
   const formik = useFormik({
     initialValues: {
@@ -45,6 +54,8 @@ export function CustomerCreate() {
       postalCode: "",
     },
     onSubmit: (values) => {
+      setSend(true);
+
       upload(files).then((respo) => {
         values.image = respo.data["@id"];
         postAdress(values).then((resp) => {
@@ -178,14 +189,20 @@ export function CustomerCreate() {
               required
             />
 
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              className={classes.button}
-            >
-              Save
-            </Button>
+            {!send ? (
+              <Button
+                variant="contained"
+                color="secondary"
+                type="submit"
+                className={classes.button}
+              >
+                Save
+              </Button>
+            ) : (
+              <div className={classes.CircularProgress}>
+                <CircularProgress />
+              </div>
+            )}
           </form>
         </CardContent>
       </Card>

@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const url = process.env.REACT_APP_ENTRY_POINT;
 
 /**
@@ -21,7 +22,26 @@ const postCustomer = (newCustomer) => {
 };
 
 /**
- * post a customer
+ * post a driver
+ * @param newDriver object like {
+        firstName: String
+        lastName: String
+        phoneNumber:String
+        status: Boolean
+        createdAt: Date
+        updatedAt : Date
+        address: String
+        driverDoc:String
+       
+ * }
+ */
+
+const postDriver = (newDriver) => {
+  return axios.post(url + "/drivers", newDriver);
+};
+
+/**
+ * post an adress
  * @param newAdress object like {
         street: String
         city: String
@@ -44,4 +64,39 @@ const upload = (file) => {
   });
 };
 
-export { postCustomer, postAdress, upload };
+const postDriverDoc = (fileIdentity, fileVtc) => {
+  if (fileIdentity === "" && fileVtc !== "") {
+    return upload(fileVtc).then((resVtc) => {
+      var vtcCard = resVtc.data["@id"];
+      return axios.post(url + "/driver_docs", {
+        vtcCard: vtcCard,
+      });
+    });
+  } else if (fileVtc === "" && fileIdentity !== "") {
+    return upload(fileIdentity).then((resIdentity) => {
+      var identity = resIdentity.data["@id"];
+      return upload(fileVtc).then((resVtc) => {
+        var vtcCard = resVtc.data["@id"];
+        return axios.post(url + "/driver_docs", {
+          identity: identity,
+          vtcCard: vtcCard,
+        });
+      });
+    });
+  } else if (fileVtc === "" && fileIdentity === "") {
+    return axios.post(url + "/driver_docs", {});
+  } else {
+    return upload(fileIdentity).then((resIdentity) => {
+      var identity = resIdentity.data["@id"];
+      return upload(fileVtc).then((resVtc) => {
+        var vtcCard = resVtc.data["@id"];
+        return axios.post(url + "/driver_docs", {
+          identity: identity,
+          vtcCard: vtcCard,
+        });
+      });
+    });
+  }
+};
+
+export { postCustomer, postAdress, postDriver, postDriverDoc, upload };

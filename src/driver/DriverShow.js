@@ -31,13 +31,7 @@ export const DriverShow = (props) => (
         </ReferenceField>
       </Tab>
       <Tab label="Documents" path="driver_docs">
-        <ReferenceField
-          source="driverDoc"
-          reference="driver_docs"
-          addLabel={false}
-        >
-          <TextField source="diverLicenceUrl" />
-        </ReferenceField>
+        <TextField source="driverDoc" />
       </Tab>
     </TabbedShowLayout>
   </Show>

@@ -1,10 +1,16 @@
 import React from "react";
-import { List, Datagrid, TextField, ReferenceField } from "react-admin";
+import {
+  List,
+  Datagrid,
+  TextField,
+  ReferenceField,
+  ShowButton,
+} from "react-admin";
 import { GetAvatarUrl } from "../helpers/helper";
 
 export const CustomerList = (props) => (
   <List {...props}>
-    <Datagrid rowClick="show">
+    <Datagrid>
       <ReferenceField source="image" label="Avatar" reference="media_objects">
         <GetAvatarUrl />
       </ReferenceField>
@@ -13,6 +19,7 @@ export const CustomerList = (props) => (
       <ReferenceField source="address" reference="addresses" addLabel={false}>
         <TextField source="street" />
       </ReferenceField>
+      <ShowButton />
     </Datagrid>
   </List>
 );
