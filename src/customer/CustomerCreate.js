@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function CustomerCreate() {
   const classes = useStyles();
-  const [files, setfiles] = useState('');
+  const [files, setfiles] = useState();
   const [send, setSend] = useState(false);
   const redirect = useRedirect();
   const formik = useFormik({
@@ -82,7 +82,7 @@ export function CustomerCreate() {
             id="image"
             name="image"
             onChange={(e) => {
-              setfiles(e.target.files);
+              setfiles(e.target.files[0]);
               console.log(e.target.files)
             }}
             accept="image/png, image/jpeg"

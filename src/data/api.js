@@ -59,7 +59,7 @@ const upload = (file) => {
   //   formData.append('files', file[i]);
   //   console.log(file[i])
   // }
-  formData.append('files', file[0]);
+  formData.append('files', file);
   return axios.post(url + "/media_objects", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
