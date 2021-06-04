@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { postAdress, postCustomer, upload } from "../data/api";
 import { useRedirect } from "react-admin";
+import { useNotify } from "ra-core";
 
 const useStyles = makeStyles((theme) => ({
   bodyCard: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function CustomerCreate() {
+  const notify = useNotify();
   const classes = useStyles();
   const [files, setfiles] = useState("");
   const redirect = useRedirect();
@@ -52,6 +54,7 @@ export function CustomerCreate() {
           values.address = resp.data["@id"];
           postCustomer(values)
             .then((res) => {
+              notify("customer create ");
               redirect("/customers");
             })
             .catch((error) => {
