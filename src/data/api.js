@@ -55,7 +55,8 @@ const postAdress = (newAdress) => {
 
 const upload = (file) => {
   let formData = new FormData();
-  formData.append("file", file);
+  formData.append('file', file);
+
   return axios.post(url + "/media_objects", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -65,38 +66,17 @@ const upload = (file) => {
 };
 
 const postDriverDoc = (fileIdentity, fileVtc) => {
-  if (fileIdentity === "" && fileVtc !== "") {
+  return upload(fileIdentity).then((resIdentity) => {
+    var identity = resIdentity.data["@id"];
     return upload(fileVtc).then((resVtc) => {
       var vtcCard = resVtc.data["@id"];
       return axios.post(url + "/driver_docs", {
+        identity: identity,
         vtcCard: vtcCard,
       });
     });
-  } else if (fileVtc === "" && fileIdentity !== "") {
-    return upload(fileIdentity).then((resIdentity) => {
-      var identity = resIdentity.data["@id"];
-      return upload(fileVtc).then((resVtc) => {
-        var vtcCard = resVtc.data["@id"];
-        return axios.post(url + "/driver_docs", {
-          identity: identity,
-          vtcCard: vtcCard,
-        });
-      });
-    });
-  } else if (fileVtc === "" && fileIdentity === "") {
-    return axios.post(url + "/driver_docs", {});
-  } else {
-    return upload(fileIdentity).then((resIdentity) => {
-      var identity = resIdentity.data["@id"];
-      return upload(fileVtc).then((resVtc) => {
-        var vtcCard = resVtc.data["@id"];
-        return axios.post(url + "/driver_docs", {
-          identity: identity,
-          vtcCard: vtcCard,
-        });
-      });
-    });
-  }
+  });
+
 };
 
 export { postCustomer, postAdress, postDriver, postDriverDoc, upload };

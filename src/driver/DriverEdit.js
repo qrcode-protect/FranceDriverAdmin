@@ -8,8 +8,6 @@ import {
   useRefresh,
   useRedirect,
   BooleanInput,
-  ReferenceInput,
-  SelectInput,
 } from "react-admin";
 
 export const DriverEdit = (props) => {
