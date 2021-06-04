@@ -9,6 +9,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 import { postAdress, postDriver, postDriverDoc, upload } from "../data/api";
 import { useRedirect } from "react-admin";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   bodyCard: {
@@ -34,10 +35,9 @@ const useStyles = makeStyles((theme) => ({
 
 export function DriverCreate() {
   const classes = useStyles();
-  const [files, setfiles] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [send, setSend] = useState(false);
-  const [identity, setidentity] = useState("");
-  const [vtcCard, setvtcCard] = useState("");
+  const [files, setFiles] = useState([]);
   const redirect = useRedirect();
 
   const formik = useFormik({
@@ -57,22 +57,15 @@ export function DriverCreate() {
     },
     onSubmit: (values) => {
       setSend(true);
-      upload(files).then((resFiles) => {
-        values.avatar = resFiles.data["@id"];
-        postAdress(values).then((resPostAdress) => {
-          values.address = resPostAdress.data["@id"];
-          postDriverDoc(identity, vtcCard).then((resPostDriverDoc) => {
-            values.driverDoc = resPostDriverDoc.data["@id"];
-            postDriver(values)
-              .then((response) => {
-                redirect("/drivers");
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          });
+      axios
+        .all([upload(avatar), postAdress(values), postDriverDoc(files)])
+        .then((response) => {
+          values.avatar = response[0].data["@id"];
+          values.address = response[1].data["@id"];
+          values.driverDoc = response[2].data["@id"];
+          postDriver(values);
+          redirect("/drivers");
         });
-      });
     },
   });
   return (
@@ -86,7 +79,7 @@ export function DriverCreate() {
             name="avatar"
             onChange={(e) => {
               console.log(e.target.files[0]);
-              setfiles(e.target.files[0]);
+              setAvatar(e.target.files[0]);
             }}
             accept="image/png, image/jpeg"
           />
@@ -198,16 +191,14 @@ export function DriverCreate() {
             <input
               type="file"
               onChange={(e) => {
-                console.log(e.target.files[0]);
-                setidentity(e.target.files[0]);
+                setFiles([...files, e.target.files[0]]);
               }}
               accept="file"
             />
             <input
               type="file"
               onChange={(e) => {
-                console.log(e.target.files[0]);
-                setvtcCard(e.target.files[0]);
+                setFiles([...files, e.target.files[0]]);
               }}
               accept="file"
             />

@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { postAdress, postCustomer, upload } from "../data/api";
 import { useRedirect } from "react-admin";
 import { useNotify } from "ra-core";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   bodyCard: {
@@ -57,20 +58,12 @@ export function CustomerCreate() {
     },
     onSubmit: (values) => {
       setSend(true);
-      upload(files).then((respo) => {
-        values.image = respo.data["@id"];
-        postAdress(values).then((resp) => {
-          console.log(resp.data["@id"]);
-          values.address = resp.data["@id"];
-          postCustomer(values)
-            .then((res) => {
-              notify("customer create ");
-              redirect("/customers");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
+      axios.all([upload(files), postAdress(values)]).then((response) => {
+        values.image = response[0].data["@id"];
+        values.address = response[1].data["@id"];
+        postCustomer(values);
+        notify("customer create ");
+        redirect("/customers");
       });
     },
   });

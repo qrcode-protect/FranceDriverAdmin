@@ -55,7 +55,7 @@ const postAdress = (newAdress) => {
 
 const upload = (file) => {
   let formData = new FormData();
-  formData.append('file', file);
+  formData.append("file", file);
 
   return axios.post(url + "/media_objects", formData, {
     headers: {
@@ -65,18 +65,19 @@ const upload = (file) => {
   });
 };
 
-const postDriverDoc = (fileIdentity, fileVtc) => {
-  return upload(fileIdentity).then((resIdentity) => {
-    var identity = resIdentity.data["@id"];
-    return upload(fileVtc).then((resVtc) => {
-      var vtcCard = resVtc.data["@id"];
-      return axios.post(url + "/driver_docs", {
-        identity: identity,
-        vtcCard: vtcCard,
-      });
+const postDriverDoc = (files) => {
+  var tabFileUpload = [];
+  for (let i = 0; i < Object.keys(files).length; i++) {
+    tabFileUpload[i] = upload(files[i]);
+  }
+  return axios.all(tabFileUpload).then((response) => {
+    var identity = response[0].data["@id"];
+    var vtcCard = response[1].data["@id"];
+    return axios.post(url + "/driver_docs", {
+      identity: identity,
+      vtcCard: vtcCard,
     });
   });
-
 };
 
 export { postCustomer, postAdress, postDriver, postDriverDoc, upload };
