@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -90,7 +91,7 @@ export function CustomerCreate() {
             multiple
           />
           <form onSubmit={formik.handleSubmit} className={classes.contentCard}>
-            {/* <TextField
+            <TextField
               id="firstName"
               name="firstName"
               label="FirstName"
@@ -189,7 +190,7 @@ export function CustomerCreate() {
               onChange={formik.handleChange}
               variant="filled"
               required
-            /> */}
+            />
 
             {!send ? (
               <Button
