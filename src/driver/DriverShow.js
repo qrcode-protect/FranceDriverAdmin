@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import VehicleCreate from "../vehicle/VehicleCreate";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   ReferenceField,
   Show,
@@ -11,6 +14,7 @@ export const DriverShow = (props) => (
   <Show {...props}>
     <TabbedShowLayout>
       <Tab label="Driver">
+        <TextField source="id" />
         <TextField source="firstName" />
         <TextField source="lastName" />
         <TextField source="phoneNumber" />
@@ -32,6 +36,10 @@ export const DriverShow = (props) => (
       </Tab>
       <Tab label="Documents" path="driver_docs">
         <TextField source="driverDoc" />
+      </Tab>
+      <Tab label="Vehicle" path="vehicles">
+        <TextField source="vehicle" />
+        <VehicleCreate driverId={props.id} />
       </Tab>
     </TabbedShowLayout>
   </Show>

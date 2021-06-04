@@ -7,8 +7,7 @@ export const VehicleList = (props) => (
       <TextField source="vehicleNumber" />
       <TextField source="color" />
       <TextField source="model" />
-      <TextField source="mdelYear" />
-      <TextField source="vehicleDoc" />
+      <TextField source="modelYear" />
     </Datagrid>
   </List>
 );

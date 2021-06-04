@@ -80,4 +80,33 @@ const postDriverDoc = (files) => {
   });
 };
 
-export { postCustomer, postAdress, postDriver, postDriverDoc, upload };
+/**
+ * post an vehicle
+ * @param newVehicle object like {
+       vehicleNumber: String
+        color: String
+        model: String
+        modelYear: String
+
+       
+ * }
+ */
+const postVehicle = (newVehicle) => {
+  return axios.post(url + "/vehicles", newVehicle);
+};
+
+const putDriver = (idDriver, vehicleid) => {
+  return axios.put(url + idDriver, {
+    vehicle: vehicleid,
+  });
+};
+
+export {
+  postCustomer,
+  postAdress,
+  postDriver,
+  postDriverDoc,
+  upload,
+  postVehicle,
+  putDriver,
+};
