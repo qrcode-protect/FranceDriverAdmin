@@ -54,6 +54,7 @@ export function DriverCreate() {
       city: "",
       postalCode: "",
       driverDoc: "",
+      vehicle: "",
     },
     onSubmit: (values) => {
       setSend(true);

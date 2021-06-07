@@ -95,6 +95,21 @@ const postVehicle = (newVehicle) => {
   return axios.post(url + "/vehicles", newVehicle);
 };
 
+const postVehicleDoc = (files) => {
+  var tabFileUpload = [];
+  for (let i = 0; i < Object.keys(files).length; i++) {
+    tabFileUpload[i] = upload(files[i]);
+  }
+  return axios.all(tabFileUpload).then((response) => {
+    var vehicleRegistrationCard = response[0].data["@id"];
+    var insuranceCard = response[1].data["@id"];
+    return axios.post(url + "/vehicle_docs", {
+      vehicleRegistrationCard: vehicleRegistrationCard,
+      insuranceCard: insuranceCard,
+    });
+  });
+};
+
 const putDriver = (idDriver, vehicleid) => {
   return axios.put(url + idDriver, {
     vehicle: vehicleid,
@@ -109,4 +124,5 @@ export {
   upload,
   postVehicle,
   putDriver,
+  postVehicleDoc,
 };

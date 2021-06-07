@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Datagrid, TextField } from "react-admin";
+import { List, Datagrid, TextField, EditButton } from "react-admin";
 
 export const VehicleList = (props) => (
   <List {...props}>
@@ -8,6 +8,7 @@ export const VehicleList = (props) => (
       <TextField source="color" />
       <TextField source="model" />
       <TextField source="modelYear" />
+      <EditButton />
     </Datagrid>
   </List>
 );

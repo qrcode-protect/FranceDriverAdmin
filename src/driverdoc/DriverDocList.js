@@ -5,7 +5,6 @@ export const DriverDocList = (props) => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
-
       <TextField source="identity" />
       <TextField source="vtcCard" />
     </Datagrid>
