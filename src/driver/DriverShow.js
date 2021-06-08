@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+import React from "react";
 import VehicleCreate from "../vehicle/VehicleCreate";
-import { makeStyles } from "@material-ui/core/styles";
 
 import {
   ReferenceField,
@@ -11,16 +9,7 @@ import {
   TextField,
 } from "react-admin";
 
-const useStyles = makeStyles(() => ({
-  contentButton: {
-    margin: "5px",
-    color: "white",
-  },
-}));
-
 export function DriverShow(props) {
-  const classes = useStyles();
-
   return (
     <Show {...props}>
       <TabbedShowLayout>
@@ -72,7 +61,6 @@ export function DriverShow(props) {
           >
             <TextField source="vehicleNumber" />
           </ReferenceField>
-          {console.log(props.firstName)}
 
           <VehicleCreate driverId={props.id} />
         </Tab>

@@ -13,9 +13,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import { postVehicleDoc, postVehicle, putDriver, upload } from "../data/api";
+import { postVehicleDoc, postVehicle, putDriver } from "../data/api";
 import { useRedirect } from "react-admin";
-import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   contentForm: {
@@ -34,6 +33,7 @@ const useStyles = makeStyles(() => ({
     paddingRight: "10px",
   },
   contentButtonCancel: {
+    margin: "10px",
     background: "red",
     "&:hover, &:focus": {
       background: "red",
@@ -71,24 +71,15 @@ export function VehicleCreate({ driverId }) {
 
     onSubmit: (values) => {
       setSend(true);
-      axios.all([postVehicleDoc(files)]).then((response) => {
-        console.log("yo");
-        values.vehicleDoc = response[0].data["@id"];
-        putDriver(driverId, response.data["@id"]);
-        postVehicle(values);
-        redirect("/drivers");
+
+      postVehicleDoc(files).then((resp) => {
+        values.vehicleDoc = resp.data["@id"];
+        postVehicle(values).then((response) => {
+          putDriver(driverId, response.data["@id"]);
+          redirect("/drivers");
+        });
       });
     },
-    // onSubmit: (values) => {
-    //   setSend(true);
-    //   postVehicle(values).then((response) => {
-    //     putDriver(driverId, response.data["@id"]);
-    //   });
-    //   postVehicleDoc(files).then((response) => {
-    //     putDriver(vehicleId, response.data["@id"]);
-    //     redirect("/drivers");
-    //   });
-    // },
   });
   return (
     <div>
@@ -166,33 +157,35 @@ export function VehicleCreate({ driverId }) {
 
             <DialogActions className={classes.contentButton}>
               {!send ? (
-                <Button
-                  label="save"
-                  color="primary"
-                  variant="contained"
-                  type="submit"
-                  className={classes.contentButton}
-                >
-                  <p className={classes.contentButtonP}>Save</p>
-                  <IconSave />
-                </Button>
+                <div className={classes.contentButton}>
+                  <Button
+                    label="save"
+                    color="primary"
+                    variant="contained"
+                    type="submit"
+                    className={classes.contentButton}
+                  >
+                    <p className={classes.contentButtonP}>Save</p>
+                    <IconSave />
+                  </Button>
+
+                  <Button
+                    label="ra.action.cancel"
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleCloseClick}
+                    className={classes.contentButtonCancel}
+                  >
+                    <p className={classes.contentButtonP}>Cancel</p>
+
+                    <IconCancel />
+                  </Button>
+                </div>
               ) : (
                 <div className={classes.CircularProgress}>
                   <CircularProgress />
                 </div>
               )}
-              <Button
-                label="ra.action.cancel"
-                variant="contained"
-                color="secondary"
-                onClick={handleCloseClick}
-                className={classes.contentButton}
-                className={classes.contentButtonCancel}
-              >
-                <p className={classes.contentButtonP}>Cancel</p>
-
-                <IconCancel />
-              </Button>
             </DialogActions>
           </form>
         </DialogContent>

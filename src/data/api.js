@@ -31,8 +31,9 @@ const postCustomer = (newCustomer) => {
         createdAt: Date
         updatedAt : Date
         address: String
+        avatar:String
         driverDoc:String
-       
+
  * }
  */
 
@@ -87,7 +88,7 @@ const postDriverDoc = (files) => {
         color: String
         model: String
         modelYear: String
-
+        vehicleDoc:String
        
  * }
  */
@@ -96,11 +97,11 @@ const postVehicle = (newVehicle) => {
 };
 
 const postVehicleDoc = (files) => {
-  var tabFileUpload = [];
+  var tabFileUploadVDoc = [];
   for (let i = 0; i < Object.keys(files).length; i++) {
-    tabFileUpload[i] = upload(files[i]);
+    tabFileUploadVDoc[i] = upload(files[i]);
   }
-  return axios.all(tabFileUpload).then((response) => {
+  return axios.all(tabFileUploadVDoc).then((response) => {
     var vehicleRegistrationCard = response[0].data["@id"];
     var insuranceCard = response[1].data["@id"];
     return axios.post(url + "/vehicle_docs", {
