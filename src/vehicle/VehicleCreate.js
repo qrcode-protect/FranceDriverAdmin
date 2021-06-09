@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
   },
   contentButtonP: {
     margin: "5px",
-    paddingRight: "10px",
+    paddingLeft: "10px",
   },
   contentButtonCancel: {
     margin: "10px",
@@ -140,20 +140,29 @@ export function VehicleCreate({ driverId }) {
 
             <h1> Ajouter un Document </h1>
 
-            <input
-              type="file"
-              onChange={(e) => {
-                setFiles([...files, e.target.files[0]]);
-              }}
-              accept="file"
-            />
-            <input
-              type="file"
-              onChange={(e) => {
-                setFiles([...files, e.target.files[0]]);
-              }}
-              accept="file"
-            />
+            <div>
+              <div>
+                <label for="vtcCard">Insurance Card : </label>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    setFiles([...files, e.target.files[0]]);
+                  }}
+                  accept="file"
+                />
+              </div>
+
+              <div>
+                <label for="vtcCard">Registration Card : </label>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    setFiles([...files, e.target.files[0]]);
+                  }}
+                  accept="file"
+                />
+              </div>
+            </div>
 
             <DialogActions className={classes.contentButton}>
               {!send ? (
@@ -165,8 +174,9 @@ export function VehicleCreate({ driverId }) {
                     type="submit"
                     className={classes.contentButton}
                   >
-                    <p className={classes.contentButtonP}>Save</p>
                     <IconSave />
+
+                    <p className={classes.contentButtonP}>Save</p>
                   </Button>
 
                   <Button
@@ -176,9 +186,9 @@ export function VehicleCreate({ driverId }) {
                     onClick={handleCloseClick}
                     className={classes.contentButtonCancel}
                   >
-                    <p className={classes.contentButtonP}>Cancel</p>
-
                     <IconCancel />
+
+                    <p className={classes.contentButtonP}>Cancel</p>
                   </Button>
                 </div>
               ) : (

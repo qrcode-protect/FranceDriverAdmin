@@ -117,6 +117,10 @@ const putDriver = (idDriver, vehicleid) => {
   });
 };
 
+const getMediaObject = (identity) => {
+  return axios.get(url + identity);
+};
+
 export {
   postCustomer,
   postAdress,
@@ -126,4 +130,5 @@ export {
   postVehicle,
   putDriver,
   postVehicleDoc,
+  getMediaObject,
 };

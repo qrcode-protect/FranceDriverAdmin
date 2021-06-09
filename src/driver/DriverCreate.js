@@ -92,7 +92,7 @@ export function DriverCreate() {
                     id="avatar"
                     name="avatar"
                     onChange={(e) => {
-                      console.log(e.target.files[0]);
+                      // console.log(e.target.files[0]);
                       setAvatar(e.target.files[0]);
                     }}
                     accept="image/png, image/jpeg"
@@ -221,6 +221,8 @@ export function DriverCreate() {
                     }}
                     accept="file"
                   />
+                  {console.log(<input id="vtcCard" />)}
+
                   <label for="vtcCard">VtcCard: </label>
 
                   <input

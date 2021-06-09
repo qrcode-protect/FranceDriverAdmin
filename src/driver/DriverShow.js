@@ -9,6 +9,16 @@ import {
   TextField,
 } from "react-admin";
 
+const IsVehicle = ({ record }) => {
+  let data = record.vehicle;
+
+  if (data == null) {
+    return <VehicleCreate driverId={record.id} />;
+  } else {
+    return <></>;
+  }
+};
+
 export function DriverShow(props) {
   return (
     <Show {...props}>
@@ -59,10 +69,9 @@ export function DriverShow(props) {
             reference="vehicles"
             addLabel={false}
           >
-            <TextField source="vehicleNumber" />
+            <TextField source="id" />
           </ReferenceField>
-
-          <VehicleCreate driverId={props.id} />
+          <IsVehicle />
         </Tab>
       </TabbedShowLayout>
     </Show>
