@@ -31,8 +31,9 @@ const postCustomer = (newCustomer) => {
         createdAt: Date
         updatedAt : Date
         address: String
+        avatar:String
         driverDoc:String
-       
+
  * }
  */
 
@@ -87,12 +88,27 @@ const postDriverDoc = (files) => {
         color: String
         model: String
         modelYear: String
-
+        vehicleDoc:String
        
  * }
  */
 const postVehicle = (newVehicle) => {
   return axios.post(url + "/vehicles", newVehicle);
+};
+
+const postVehicleDoc = (files) => {
+  var tabFileUploadVDoc = [];
+  for (let i = 0; i < Object.keys(files).length; i++) {
+    tabFileUploadVDoc[i] = upload(files[i]);
+  }
+  return axios.all(tabFileUploadVDoc).then((response) => {
+    var vehicleRegistrationCard = response[0].data["@id"];
+    var insuranceCard = response[1].data["@id"];
+    return axios.post(url + "/vehicle_docs", {
+      vehicleRegistrationCard: vehicleRegistrationCard,
+      insuranceCard: insuranceCard,
+    });
+  });
 };
 
 const putDriver = (idDriver, vehicleid) => {
@@ -101,7 +117,18 @@ const putDriver = (idDriver, vehicleid) => {
   });
 };
 
+const getMediaObject = (identity) => {
+  return axios.get(url + identity);
+};
+
+const putDriverAvatar = (idDriver, avatarId) => {
+  return axios.put(url + idDriver, {
+    driver: avatarId,
+  });
+};
+
 export {
+  putDriverAvatar,
   postCustomer,
   postAdress,
   postDriver,
@@ -109,4 +136,6 @@ export {
   upload,
   postVehicle,
   putDriver,
+  postVehicleDoc,
+  getMediaObject,
 };

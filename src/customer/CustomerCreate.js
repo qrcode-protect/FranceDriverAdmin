@@ -78,7 +78,7 @@ export function CustomerCreate() {
             name="image"
             onChange={(e) => {
               setfiles(e.target.files[0]);
-              console.log(e.target.files);
+              // console.log(e.target.files);
             }}
             accept="image/png, image/jpeg"
             multiple

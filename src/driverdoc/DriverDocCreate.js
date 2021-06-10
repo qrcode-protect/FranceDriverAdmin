@@ -35,11 +35,9 @@ export function DriverDocCreate() {
 
   const [identity, setidentity] = useState("");
   function sendFiles() {
-    console.log("send");
     upload(identity).then((response) => {
       postDriverDoc(response.data["@id"]);
       redirect("/driver_docs");
-      console.log(response);
     });
   }
   return (
