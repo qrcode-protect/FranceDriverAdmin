@@ -4,6 +4,8 @@ import { List, Datagrid, TextField, ReferenceField } from "react-admin";
 export const TripList = (props) => (
   <List {...props}>
     <Datagrid>
+      <TextField source="id" />
+      <TextField source="tripCustomer" />
       <TextField source="fromLocation" />
       <TextField source="toLocation" />
       <TextField source="pickupTime" />

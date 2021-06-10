@@ -5,6 +5,7 @@ import {
   TextField,
   ReferenceField,
   ShowButton,
+  EditButton,
 } from "react-admin";
 import { GetAvatarUrl } from "../helpers/helper";
 
@@ -20,6 +21,7 @@ export const CustomerList = (props) => (
         <TextField source="street" />
       </ReferenceField>
       <ShowButton />
+      <EditButton />
     </Datagrid>
   </List>
 );
