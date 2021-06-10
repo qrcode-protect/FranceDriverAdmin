@@ -6,17 +6,17 @@ import { getMediaObject } from "../data/api";
 
 const url = process.env.REACT_APP_ENTRY_POINT;
 
-//Customer List
+//Customer List & DriverList
 export const GetAvatarUrl = ({ record }) => {
   let avatarUrl = url + record.contentUrl;
   console.log(record);
 
   return <Avatar variant="circle" src={avatarUrl} />;
 };
-//
+// DriverShow
 export const GetImageUrl = ({ record }) => {
   let data = url + record.contentUrl;
-  return <img alt="" style={{ maxWidth: 300, maxHeight: 300 }} src={data} />;
+  return <img alt="" style={{ maxWidth: 200, maxHeight: 200 }} src={data} />;
 };
 
 //Media Objects

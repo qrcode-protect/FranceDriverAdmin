@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Edit,
+  ReferenceField,
   SimpleForm,
   TextInput,
   DateInput,
@@ -8,14 +9,17 @@ import {
   useRefresh,
   useRedirect,
   BooleanInput,
+  FileInput,
+  FileField,
 } from "react-admin";
+import { GetImageUrl } from "../helpers/helper";
 
 export const DriverEdit = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
   const onSuccess = ({ data }) => {
-    notify(`Changes to Driver "${data.fistName}" saved`);
+    notify(`Changes to Driver  saved`);
     redirect("/drivers");
     refresh();
   };

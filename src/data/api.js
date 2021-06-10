@@ -121,7 +121,14 @@ const getMediaObject = (identity) => {
   return axios.get(url + identity);
 };
 
+const putDriverAvatar = (idDriver, avatarId) => {
+  return axios.put(url + idDriver, {
+    driver: avatarId,
+  });
+};
+
 export {
+  putDriverAvatar,
   postCustomer,
   postAdress,
   postDriver,

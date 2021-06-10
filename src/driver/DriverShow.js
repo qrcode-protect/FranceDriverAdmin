@@ -1,6 +1,7 @@
 import React from "react";
 import VehicleCreate from "../vehicle/VehicleCreate";
-
+import { GetImageUrl } from "../helpers/helper";
+import Button from "@material-ui/core/Button";
 import {
   ReferenceField,
   Show,
@@ -8,6 +9,7 @@ import {
   TabbedShowLayout,
   TextField,
 } from "react-admin";
+import DriverEditSoft from "./DriverEditSoft";
 
 const IsVehicle = ({ record }) => {
   let data = record.vehicle;
@@ -25,19 +27,20 @@ export function DriverShow(props) {
       <TabbedShowLayout>
         <Tab label="Driver">
           <TextField source="id" />
+          <ReferenceField
+            source="avatar"
+            label="Avatar"
+            reference="media_objects"
+          >
+            <GetImageUrl />
+          </ReferenceField>
+          <DriverEditSoft />
           <TextField source="firstName" />
           <TextField source="lastName" />
           <TextField source="phoneNumber" />
           <TextField source="driverDocs" />
         </Tab>
         <Tab label="Address" path="addresses">
-          <ReferenceField
-            source="address"
-            reference="addresses"
-            addLabel={false}
-          >
-            <TextField source="id" />
-          </ReferenceField>
           <ReferenceField
             source="address"
             reference="addresses"

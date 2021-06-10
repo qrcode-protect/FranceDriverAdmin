@@ -8,6 +8,7 @@ export const DriverDocList = (props) => (
       <TextField source="id" />
 
       <GetIdentity label="Identity" />
+      {console.log(<GetIdentity />)}
       {/* <TextField source="identity" /> */}
       <TextField source="vtcCard" />
     </Datagrid>
