@@ -5,6 +5,7 @@ import { FirebaseAuthProvider } from "react-admin-firebase";
 import { HydraAdmin, fetchHydra, hydraDataProvider } from "@api-platform/admin";
 import { parseHydraDocumentation } from "@api-platform/api-doc-parser";
 import { Resource } from "react-admin";
+import { Dashboard, Formulaire } from "./components";
 
 import config from "./config";
 import drivers from "./driver";
@@ -14,8 +15,7 @@ import customers from "./customer";
 import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicledocs from "./vehicleDoc";
-
-import { Dashboard, Formulaire } from "./components";
+import gestions from "./gestion";
 import MyLayout from "./Layout";
 import Theme from "./Theme";
 import CustomRoutes from "./CustomRoutes";
@@ -23,7 +23,6 @@ import LoginPage from "./LoginPage";
 import mediaObjects from "./mediaObject";
 
 const entrypoint = process.env.REACT_APP_ENTRY_POINT;
-
 
 firebase.initializeApp(config);
 const authProvider = FirebaseAuthProvider(config);
@@ -55,6 +54,7 @@ function App() {
       <Resource name="trips" {...trips} />
       <Resource name="vehicles" {...vehicles} />
       <Resource name="vehicle_docs" {...vehicledocs} />
+      <Resource name="gestions" {...gestions} />
     </HydraAdmin>
   );
 }

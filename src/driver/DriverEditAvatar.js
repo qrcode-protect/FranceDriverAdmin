@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-
 import Button from "@material-ui/core/Button";
 import IconSave from "@material-ui/icons/Save";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -13,14 +11,7 @@ import { useRedirect } from "react-admin";
 
 import { putDriverAvatar, upload } from "../data/api";
 
-// const useStyles = makeStyles((theme) => ({
-//   Button: {
-//     margin: theme.spacing(1),
-//   },
-// }));
-
 export function DriverEditAvatar({ record }) {
-  //const classes = useStyles();
   const [send, setSend] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [files, setFiles] = useState();

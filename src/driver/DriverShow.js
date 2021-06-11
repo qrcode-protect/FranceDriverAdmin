@@ -1,6 +1,6 @@
 import React from "react";
 //import { makeStyles } from "@material-ui/core/styles";
-
+import Button from "@material-ui/core/Button";
 import VehicleCreate from "../vehicle/VehicleCreate";
 import { GetImageUrl } from "../helpers/helper";
 import {
@@ -11,8 +11,6 @@ import {
   TextField,
 } from "react-admin";
 import DriverEditAvatar from "./DriverEditAvatar";
-
-//const useStyles = makeStyles((theme) => ({}));
 
 const IsVehicle = ({ record }) => {
   let data = record.vehicle;
@@ -72,13 +70,15 @@ export function DriverShow(props) {
           >
             <TextField source="postalCode" />
           </ReferenceField>
-          <h4>Edit</h4>
           <ReferenceField
             source="address"
             reference="addresses"
             addLabel={false}
           >
-            <TextField source="id" />
+            <Button variant="outlined">
+              Edit
+              <TextField source="id" />
+            </Button>
           </ReferenceField>
         </Tab>
         <Tab label="Documents" path="driver_docs">
@@ -87,7 +87,10 @@ export function DriverShow(props) {
             reference="driver_docs"
             addLabel={false}
           >
-            <TextField source="id" />
+            <Button variant="outlined">
+              Edit
+              <TextField source="id" />
+            </Button>
           </ReferenceField>
         </Tab>
         <Tab label="Vehicle" path="vehicles">
@@ -127,13 +130,15 @@ export function DriverShow(props) {
           >
             <TextField source="modelYear" />
           </ReferenceField>
-          <h4>Edit</h4>
           <ReferenceField
             source="vehicle"
             reference="vehicles"
             addLabel={false}
           >
-            <TextField source="id" />
+            <Button variant="outlined">
+              Edit
+              <TextField source="id" />
+            </Button>
           </ReferenceField>
           <IsVehicle />
         </Tab>
