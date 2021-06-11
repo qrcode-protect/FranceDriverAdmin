@@ -123,7 +123,7 @@ const getMediaObject = (identity) => {
 
 const putDriverAvatar = (idDriver, avatarId) => {
   return axios.put(url + idDriver, {
-    driver: avatarId,
+    avatar: avatarId,
   });
 };
 
