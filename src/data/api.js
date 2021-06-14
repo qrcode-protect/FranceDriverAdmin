@@ -127,7 +127,38 @@ const putDriverAvatar = (idDriver, avatarId) => {
   });
 };
 
+const putCustomerImage = (idCustomer, imageId) => {
+  return axios.put(url + idCustomer, {
+    image: imageId,
+  });
+};
+
+/**
+ * post a Gestion
+ * @param newGestion object like {
+        driverMessage: String
+        customerMessage: String
+       
+ * }
+ */
+const postGestion = (newGestion) => {
+  return axios.post(url + "/gestions", newGestion);
+};
+
+/**
+ * post a VehicleType
+ * @param newVehicleType object like {
+        vehicleType: String       
+ * }
+ */
+const postVehicleType = (newVehicleType) => {
+  return axios.post(url + "/vehicle_types", newVehicleType);
+};
+
 export {
+  postVehicleType,
+  postGestion,
+  putCustomerImage,
   putDriverAvatar,
   postCustomer,
   postAdress,

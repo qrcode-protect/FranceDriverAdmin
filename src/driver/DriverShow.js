@@ -1,8 +1,9 @@
 import React from "react";
-//import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import VehicleCreate from "../vehicle/VehicleCreate";
 import { GetImageUrl } from "../helpers/helper";
+
 import {
   ReferenceField,
   Show,
@@ -21,8 +22,15 @@ const IsVehicle = ({ record }) => {
   }
 };
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+}));
+
 export function DriverShow(props) {
-  //const classes = useStyles();
+  const classes = useStyles();
   return (
     <Show {...props}>
       <TabbedShowLayout>
@@ -40,7 +48,6 @@ export function DriverShow(props) {
           <TextField source="firstName" />
           <TextField source="lastName" />
           <TextField source="phoneNumber" />
-          <TextField source="driverDocs" />
         </Tab>
         <Tab label="Address" path="addresses">
           <h4>Street</h4>
@@ -75,7 +82,7 @@ export function DriverShow(props) {
             reference="addresses"
             addLabel={false}
           >
-            <Button variant="outlined">
+            <Button variant="outlined" className={classes.button}>
               Edit
               <TextField source="id" />
             </Button>
@@ -86,12 +93,14 @@ export function DriverShow(props) {
             source="driverDoc"
             reference="driver_docs"
             addLabel={false}
+            link={false}
           >
-            <Button variant="outlined">
-              Edit
-              <TextField source="id" />
-            </Button>
+            <TextField source="id" />
           </ReferenceField>
+          <Button variant="outlined" className={classes.button}>
+            Edit
+            <TextField source="id" />
+          </Button>
         </Tab>
         <Tab label="Vehicle" path="vehicles">
           <h4>Vehicle Number</h4>
@@ -135,7 +144,7 @@ export function DriverShow(props) {
             reference="vehicles"
             addLabel={false}
           >
-            <Button variant="outlined">
+            <Button variant="outlined" className={classes.button}>
               Edit
               <TextField source="id" />
             </Button>

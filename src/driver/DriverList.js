@@ -23,7 +23,6 @@ export const DriverList = (props) => (
       <TextField source="phoneNumber" />
       <DateField source="createdAt" />
       <TextField source="vehicle" />
-
       <ShowButton />
     </Datagrid>
   </List>

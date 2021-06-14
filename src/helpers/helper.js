@@ -9,7 +9,7 @@ export const GetAvatarUrl = ({ record }) => {
   let avatarUrl = url + record.contentUrl;
   return <Avatar variant="circle" src={avatarUrl} />;
 };
-// DriverShow
+// DriverShow & CustomerShow
 export const GetImageUrl = ({ record }) => {
   let data = url + record.contentUrl;
   return <img alt="" style={{ maxWidth: 200, maxHeight: 200 }} src={data} />;

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import TextField from "@material-ui/core/TextField";
-import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
-import { postAdress, postDriver, postDriverDoc, upload } from "../data/api";
-import { useRedirect } from "react-admin";
+
+import { useRedirect, useRefresh, List, Datagrid } from "react-admin";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
-import SaveIcon from "@material-ui/icons/Save";
+import { postGestion, postVehicleType } from "../data/api";
 
+import SendIcon from "@material-ui/icons/Send";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,41 +30,38 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: 20,
+    marginRight: 100,
+    marginLeft: 100,
+  },
+  CircularProgress: {
+    margin: 20,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
-export function GestionList() {
+export function GestionList(props) {
   const classes = useStyles();
-  const [avatar, setAvatar] = useState("");
   const [send, setSend] = useState(false);
-  const [files, setFiles] = useState([]);
   const redirect = useRedirect();
-
+  const refresh = useRefresh();
+  // const listVehicleType = .map(()=><option>{}</option>)
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      status: Boolean,
-      createdAt: Date,
-      updatedAt: Date,
-      avatar: "",
-      address: "",
-      street: "",
-      city: "",
-      postalCode: "",
-      driverDoc: "",
+      driverMessage: "",
+      customerMessage: "",
+      vehicleType: "",
     },
     onSubmit: (values) => {
       setSend(true);
       axios
-        .all([upload(avatar), postAdress(values), postDriverDoc(files)])
+        .all([postGestion(values), postVehicleType(values)])
         .then((response) => {
-          values.avatar = response[0].data["@id"];
-          values.address = response[1].data["@id"];
-          values.driverDoc = response[2].data["@id"];
-          postDriver(values);
-          redirect("/drivers");
+          values.Gestion = response[0].data["@id"];
+          values.VehicleType = response[1].data["@id"];
+          setSend(false);
+          refresh();
         });
     },
   });
@@ -88,24 +85,32 @@ export function GestionList() {
               <AccordionDetails>
                 <div className={classes.details}>
                   <TextField
-                    id="filled-multiline-static"
+                    id="driverMessage"
+                    name="driverMessage"
                     label="Multiline"
                     multiline
                     rows={10}
-                    defaultValue="Quel message voulez vous envoyer"
+                    onChange={formik.handleChange}
+                    placeholder="Quel message voulez vous envoyer"
                     variant="filled"
                   />
-
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    startIcon={<SaveIcon />}
-                    type="submit"
-                  >
-                    Save
-                  </Button>
+                  {console.log(formik.values.driverMessage)}
+                  {!send ? (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      className={classes.button}
+                      startIcon={<SendIcon />}
+                      type="submit"
+                    >
+                      Send
+                    </Button>
+                  ) : (
+                    <div className={classes.CircularProgress}>
+                      <CircularProgress />
+                    </div>
+                  )}
                 </div>
               </AccordionDetails>
             </Accordion>
@@ -123,23 +128,31 @@ export function GestionList() {
                 <div className={classes.details}>
                   <TextField
                     id="filled-multiline-static"
+                    name="customerMessage"
                     label="Multiline"
                     multiline
                     rows={10}
-                    defaultValue="Quel message voulez vous envoyer"
+                    onChange={formik.handleChange}
+                    placeholder="Quel message voulez vous envoyer"
                     variant="filled"
                   />
 
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    startIcon={<SaveIcon />}
-                    type="submit"
-                  >
-                    Save
-                  </Button>
+                  {!send ? (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      className={classes.button}
+                      startIcon={<SendIcon />}
+                      type="submit"
+                    >
+                      Send
+                    </Button>
+                  ) : (
+                    <div className={classes.CircularProgress}>
+                      <CircularProgress />
+                    </div>
+                  )}
                 </div>
               </AccordionDetails>
             </Accordion>
@@ -155,46 +168,30 @@ export function GestionList() {
               </AccordionSummary>
               <AccordionDetails>
                 <div className={classes.details}>
-                  <TextField
-                    id="filled-multiline-static"
-                    label="Multiline"
-                    multiline
-                    rows={10}
-                    defaultValue="Quel message voulez vous envoyer"
-                    variant="filled"
-                  />
-
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    startIcon={<SaveIcon />}
-                    type="submit"
-                  >
-                    Save
-                  </Button>
+                  <h1>Hello</h1>
                 </div>
               </AccordionDetails>
             </Accordion>
-          </div>
-          <div className={classes.button}>
-            {!send ? (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                startIcon={<SaveIcon />}
-                type="submit"
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
               >
-                Save
-              </Button>
-            ) : (
-              <div>
-                <CircularProgress />
-              </div>
-            )}
+                <Typography>
+                  <b>Type de Vehicule</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className={classes.details}>
+                  <List {...props}>
+                    <Datagrid>
+                      <TextField source="VehicleType" />
+                    </Datagrid>
+                  </List>
+                </div>
+              </AccordionDetails>
+            </Accordion>
           </div>
         </form>
       </div>
