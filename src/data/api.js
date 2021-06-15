@@ -155,7 +155,31 @@ const postVehicleType = (newVehicleType) => {
   return axios.post(url + "/vehicle_types", newVehicleType);
 };
 
+/**
+ * post a MessageCustomer
+ * @param newMessageCustomer object like {
+        message: String       
+ * }
+ */
+
+const postMessageCustomer = (newMessageCustomer) => {
+  return axios.post(url + "/message_customers", newMessageCustomer);
+};
+
+/**
+ * post a MessageDriver
+ * @param newMessageDriver object like {
+        message: String       
+ * }
+ */
+
+const postMessageDriver = (newMessageDriver) => {
+  return axios.post(url + "/message_drivers", newMessageDriver);
+};
+
 export {
+  postMessageDriver,
+  postMessageCustomer,
   postVehicleType,
   postGestion,
   putCustomerImage,
