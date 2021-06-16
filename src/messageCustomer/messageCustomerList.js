@@ -61,7 +61,7 @@ export function MessageCustomerList(props) {
   });
   return (
     <div>
-      <h1>Gestion</h1>
+      <h1>Message Customer</h1>
 
       <div>
         <form onSubmit={formik.handleSubmit}>
@@ -73,7 +73,7 @@ export function MessageCustomerList(props) {
                 id="panel1a-header"
               >
                 <Typography>
-                  <b>Application driver</b>
+                  <b>Application customer</b>
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
