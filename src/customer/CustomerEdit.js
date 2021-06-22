@@ -6,12 +6,10 @@ import {
   SimpleForm,
   TextInput,
   DateInput,
-  useNotify,
   useRefresh,
 } from "react-admin";
 
 export const CustomerEdit = (props) => {
-  const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
   const onSuccess = ({ data }) => {

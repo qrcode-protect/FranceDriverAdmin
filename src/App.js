@@ -14,17 +14,17 @@ import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 
 import drivers from "./driver";
-import driverdocs from "./driverdoc";
+import driverdocs from "./driverDoc";
 import customers from "./customer";
 import addresses from "./address";
 import mediaObjects from "./mediaObject";
 import trips from "./trip";
 import vehicles from "./vehicle";
-import vehicledocs from "./vehicleDoc";
+import vehicleDocs from "./vehicleDoc";
 import gestions from "./gestion";
-import vehicletypes from "./vehicleType";
-import messagescustomers from "./messageCustomer";
-import messagesdrivers from "./messageDriver";
+import vehicleTypes from "./vehicleType";
+import messagesCustomers from "./messageCustomer";
+import messagesDrivers from "./messageDriver";
 
 const entrypoint = process.env.REACT_APP_ENTRY_POINT;
 
@@ -57,11 +57,11 @@ function App() {
       <Resource name="media_objects" {...mediaObjects} />
       <Resource name="trips" {...trips} />
       <Resource name="vehicles" {...vehicles} />
-      <Resource name="vehicle_docs" {...vehicledocs} />
+      <Resource name="vehicle_docs" {...vehicleDocs} />
       <Resource name="gestions" {...gestions} />
-      <Resource name="vehicle_types" {...vehicletypes} />
-      <Resource name="message_customers" {...messagescustomers} />
-      <Resource name="message_drivers" {...messagesdrivers} />
+      <Resource name="vehicle_types" {...vehicleTypes} />
+      <Resource name="message_customers" {...messagesCustomers} />
+      <Resource name="message_drivers" {...messagesDrivers} />
     </HydraAdmin>
   );
 }

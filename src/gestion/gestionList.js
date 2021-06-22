@@ -4,8 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
-import { VehicleTypeList } from "../vehicleType/VehicleTypeList";
-import { useRedirect, useRefresh } from "react-admin";
+import { useRefresh } from "react-admin";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -44,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 export function GestionList(props) {
   const classes = useStyles();
   const [send, setSend] = useState(false);
-  const redirect = useRedirect();
   const refresh = useRefresh();
   // const listVehicleType = .map(()=><option>{}</option>)
   const formik = useFormik({
