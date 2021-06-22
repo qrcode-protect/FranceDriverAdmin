@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import TextField from "@material-ui/core/TextField";
+import { List, Datagrid, TextField } from "react-admin";
+import { CustumTextField } from "../messageCustomer/CustumTextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { postMessageCustomer } from "../data/api";
 
 import SendIcon from "@material-ui/icons/Send";
-import axios from "axios";
+import { sendMessage } from "../data/mercure";
 
 const useStyles = makeStyles((theme) => ({
   details: {
@@ -44,15 +45,18 @@ export function MessageCustomerList(props) {
   const classes = useStyles();
   const [send, setSend] = useState(false);
   const refresh = useRefresh();
-  // const listVehicleType = .map(()=><option>{}</option>)
   const formik = useFormik({
     initialValues: {
       message: "",
+      customerId: "",
+      createdAt: Date,
     },
     onSubmit: (values) => {
       setSend(true);
-      axios.all([postMessageCustomer(values)]).then((response) => {
-        values.MessageCustomer = response[0].data["@id"];
+      postMessageCustomer(values).then((responses) => {
+        sendMessage().then((resp) => {
+          console.log(resp);
+        });
         setSend(false);
         refresh();
       });
@@ -61,7 +65,6 @@ export function MessageCustomerList(props) {
   return (
     <div>
       <h1>Message Customer</h1>
-
       <div>
         <form onSubmit={formik.handleSubmit}>
           <div className={classes.accordions}>
@@ -77,7 +80,15 @@ export function MessageCustomerList(props) {
               </AccordionSummary>
               <AccordionDetails>
                 <div className={classes.details}>
-                  <TextField
+                  <CustumTextField
+                    id="customerId"
+                    name="customerId"
+                    multiline
+                    onChange={formik.handleChange}
+                    placeholder="id driver "
+                    variant="filled"
+                  />
+                  <CustumTextField
                     id="message"
                     name="message"
                     label="Multiline"
@@ -87,7 +98,16 @@ export function MessageCustomerList(props) {
                     placeholder="Quel message voulez vous envoyer"
                     variant="filled"
                   />
-                  {console.log(formik.values)}
+                  <CustumTextField
+                    id="createdAt"
+                    name="createdAt"
+                    type="date"
+                    value={formik.values.createdAt}
+                    onChange={formik.handleChange}
+                    variant="filled"
+                    required
+                  />
+
                   {!send ? (
                     <Button
                       variant="contained"
@@ -110,6 +130,14 @@ export function MessageCustomerList(props) {
           </div>
         </form>
       </div>
+      <List {...props}>
+        <Datagrid>
+          <TextField source="id" />
+          <TextField source="message" />
+          <TextField source="customerId" />
+          <TextField source="createdAt" />
+        </Datagrid>
+      </List>
     </div>
   );
 }

@@ -17,7 +17,7 @@ import drivers from "./driver";
 import driverdocs from "./driverDoc";
 import customers from "./customer";
 import addresses from "./address";
-import mediaObjects from "./mediaObject";
+// import mediaObjects from "./mediaObject";
 import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicleDocs from "./vehicleDoc";
@@ -54,14 +54,14 @@ function App() {
       <Resource name="driver_docs" {...driverdocs} />
       <Resource name="customers" {...customers} />
       <Resource name="addresses" {...addresses} />
-      <Resource name="media_objects" {...mediaObjects} />
+      <Resource name="media_objects" />
       <Resource name="trips" {...trips} />
       <Resource name="vehicles" {...vehicles} />
       <Resource name="vehicle_docs" {...vehicleDocs} />
-      <Resource name="gestions" {...gestions} />
       <Resource name="vehicle_types" {...vehicleTypes} />
       <Resource name="message_customers" {...messagesCustomers} />
       <Resource name="message_drivers" {...messagesDrivers} />
+      <Resource name="gestions" {...gestions} />
     </HydraAdmin>
   );
 }

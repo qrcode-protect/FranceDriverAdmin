@@ -158,7 +158,10 @@ const postVehicleType = (newVehicleType) => {
 /**
  * post a MessageCustomer
  * @param newMessageCustomer object like {
-        message: String       
+        message: String
+        customerId: String
+        createdAt: Date   
+
  * }
  */
 
@@ -169,7 +172,10 @@ const postMessageCustomer = (newMessageCustomer) => {
 /**
  * post a MessageDriver
  * @param newMessageDriver object like {
-        message: String       
+        message: String
+        driverId: String
+        createdAt: Date
+
  * }
  */
 
