@@ -1,12 +1,10 @@
 import { VehicleTypeList } from "./VehicleTypeList";
-import { VehicleTypeShow } from "./VehicleTypeShow";
-import { VehicleTypeEdit } from "./VehicleTypeEdit";
+import { VehicleTypeCreate } from "./VehicleTypeCreate";
 
 import CommuteIcon from "@material-ui/icons/Commute";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  list:VehicleTypeList,
-  show: VehicleTypeShow,
-  edit: VehicleTypeEdit,
+  list: VehicleTypeList,
+  create: VehicleTypeCreate,
   icon: CommuteIcon,
 };
