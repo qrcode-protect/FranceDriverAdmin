@@ -6,7 +6,7 @@ const token =
 const options = {
   headers: {
     Authorization: "bearer" + token,
-    // topic: "http://104.155.24.90:8000/customers/63",
+    topic: "http://104.155.24.90:8000/customers/63",
   },
 };
 
