@@ -1,8 +1,9 @@
 import React from "react";
-//import { makeStyles } from "@material-ui/core/styles";
-
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import VehicleCreate from "../vehicle/VehicleCreate";
 import { GetImageUrl } from "../helpers/helper";
+
 import {
   ReferenceField,
   Show,
@@ -11,8 +12,6 @@ import {
   TextField,
 } from "react-admin";
 import DriverEditAvatar from "./DriverEditAvatar";
-
-//const useStyles = makeStyles((theme) => ({}));
 
 const IsVehicle = ({ record }) => {
   let data = record.vehicle;
@@ -23,8 +22,15 @@ const IsVehicle = ({ record }) => {
   }
 };
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+}));
+
 export function DriverShow(props) {
-  //const classes = useStyles();
+  const classes = useStyles();
   return (
     <Show {...props}>
       <TabbedShowLayout>
@@ -42,7 +48,6 @@ export function DriverShow(props) {
           <TextField source="firstName" />
           <TextField source="lastName" />
           <TextField source="phoneNumber" />
-          <TextField source="driverDocs" />
         </Tab>
         <Tab label="Address" path="addresses">
           <h4>Street</h4>
@@ -72,13 +77,15 @@ export function DriverShow(props) {
           >
             <TextField source="postalCode" />
           </ReferenceField>
-          <h4>Edit</h4>
           <ReferenceField
             source="address"
             reference="addresses"
             addLabel={false}
           >
-            <TextField source="id" />
+            <Button variant="outlined" className={classes.button}>
+              Edit
+              <TextField source="id" />
+            </Button>
           </ReferenceField>
         </Tab>
         <Tab label="Documents" path="driver_docs">
@@ -86,9 +93,14 @@ export function DriverShow(props) {
             source="driverDoc"
             reference="driver_docs"
             addLabel={false}
+            link={false}
           >
             <TextField source="id" />
           </ReferenceField>
+          <Button variant="outlined" className={classes.button}>
+            Edit
+            <TextField source="id" />
+          </Button>
         </Tab>
         <Tab label="Vehicle" path="vehicles">
           <h4>Vehicle Number</h4>
@@ -127,13 +139,15 @@ export function DriverShow(props) {
           >
             <TextField source="modelYear" />
           </ReferenceField>
-          <h4>Edit</h4>
           <ReferenceField
             source="vehicle"
             reference="vehicles"
             addLabel={false}
           >
-            <TextField source="id" />
+            <Button variant="outlined" className={classes.button}>
+              Edit
+              <TextField source="id" />
+            </Button>
           </ReferenceField>
           <IsVehicle />
         </Tab>

@@ -2,6 +2,7 @@ import React from "react";
 import {
   Edit,
   useRedirect,
+  BooleanInput,
   SimpleForm,
   TextInput,
   DateInput,
@@ -9,13 +10,12 @@ import {
   useRefresh,
 } from "react-admin";
 
-export const AddressEdit = (props) => {
+export const CustomerEdit = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
   const onSuccess = ({ data }) => {
-    notify(`Changes to Address saved you will be redirected to the Dashboard`);
-    redirect("/");
+    redirect("/customers");
     refresh();
   };
   return (
@@ -26,11 +26,14 @@ export const AddressEdit = (props) => {
       {...props}
     >
       <SimpleForm>
-        <TextInput disabled label="Id" source="id" />
-        <TextInput source="street" />
-        <TextInput multiline source="city" />
-        <TextInput multiline source="postalCode" />
+        <TextInput source="firstName" />
+        <TextInput multiline source="lastName" />
+        <TextInput multiline source="phoneNumber" />
+        <TextInput multiline source="deviceType" />
+        <BooleanInput label="gender" source="gender" />
         <DateInput source="updateAt" />
+        <TextInput multiline source="idfirebase" />
+        <TextInput multiline source="email" />
       </SimpleForm>
     </Edit>
   );

@@ -9,9 +9,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import { useRedirect } from "react-admin";
 
-import { putDriverAvatar, upload } from "../data/api";
+import { putCustomerImage, upload } from "../data/api";
 
-export function DriverEditAvatar({ record }) {
+export function CustomerEditImage({ record }) {
   const [send, setSend] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [files, setFiles] = useState();
@@ -26,9 +26,9 @@ export function DriverEditAvatar({ record }) {
   function onChange() {
     setSend(true);
     upload(files).then((response) => {
-      putDriverAvatar(record.id, response.data["@id"]).then(() => {
+      putCustomerImage(record.id, response.data["@id"]).then(() => {
         handleCloseClick();
-        redirect("/drivers");
+        redirect("/customers");
       });
     });
   }
@@ -42,15 +42,15 @@ export function DriverEditAvatar({ record }) {
         label="ra.action.create"
         size="small"
       >
-        Edit Avatar
+        Edit Image
       </Button>
       <Dialog
         fullWidth
         open={showDialog}
         onClose={handleCloseClick}
-        aria-label="Edit Avatar"
+        aria-label="Edit Image"
       >
-        <DialogTitle>Editer L'avatar</DialogTitle>
+        <DialogTitle>Editer L'image</DialogTitle>
 
         <DialogContent>
           <input
@@ -87,4 +87,4 @@ export function DriverEditAvatar({ record }) {
   );
 }
 
-export default DriverEditAvatar;
+export default CustomerEditImage;

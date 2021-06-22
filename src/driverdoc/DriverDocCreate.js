@@ -48,7 +48,6 @@ export function DriverDocCreate() {
           <input
             type="file"
             onChange={(e) => {
-              console.log(e.target.files[0]);
               setidentity(e.target.files[0]);
             }}
             accept="file"
