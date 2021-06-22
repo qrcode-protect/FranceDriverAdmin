@@ -29,7 +29,6 @@ export class GraphPie extends React.PureComponent {
 
   render() {
     const { data: chartData } = this.state;
-    console.log(chartData[0].country);
     return (
       <Paper>
         <Chart data={chartData}>

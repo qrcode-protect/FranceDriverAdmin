@@ -15,7 +15,7 @@ export const DriverEdit = (props) => {
   const refresh = useRefresh();
   const redirect = useRedirect();
   const onSuccess = ({ data }) => {
-    notify(`Changes to Driver "${data.fistName}" saved`);
+    notify(`Changes to Driver  saved`);
     redirect("/drivers");
     refresh();
   };

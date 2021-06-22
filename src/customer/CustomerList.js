@@ -5,6 +5,7 @@ import {
   TextField,
   ReferenceField,
   ShowButton,
+  EditButton,
 } from "react-admin";
 import { GetAvatarUrl } from "../helpers/helper";
 
@@ -16,10 +17,13 @@ export const CustomerList = (props) => (
       </ReferenceField>
       <TextField source="firstName" />
       <TextField source="lastName" />
+      <TextField source="deviceType" />
+
       <ReferenceField source="address" reference="addresses" addLabel={false}>
         <TextField source="street" />
       </ReferenceField>
       <ShowButton />
+      <EditButton />
     </Datagrid>
   </List>
 );

@@ -31,8 +31,9 @@ const postCustomer = (newCustomer) => {
         createdAt: Date
         updatedAt : Date
         address: String
+        avatar:String
         driverDoc:String
-       
+
  * }
  */
 
@@ -80,4 +81,116 @@ const postDriverDoc = (files) => {
   });
 };
 
-export { postCustomer, postAdress, postDriver, postDriverDoc, upload };
+/**
+ * post an vehicle
+ * @param newVehicle object like {
+       vehicleNumber: String
+        color: String
+        model: String
+        modelYear: String
+        vehicleDoc:String
+       
+ * }
+ */
+const postVehicle = (newVehicle) => {
+  return axios.post(url + "/vehicles", newVehicle);
+};
+
+const postVehicleDoc = (files) => {
+  var tabFileUploadVDoc = [];
+  for (let i = 0; i < Object.keys(files).length; i++) {
+    tabFileUploadVDoc[i] = upload(files[i]);
+  }
+  return axios.all(tabFileUploadVDoc).then((response) => {
+    var vehicleRegistrationCard = response[0].data["@id"];
+    var insuranceCard = response[1].data["@id"];
+    return axios.post(url + "/vehicle_docs", {
+      vehicleRegistrationCard: vehicleRegistrationCard,
+      insuranceCard: insuranceCard,
+    });
+  });
+};
+
+const putDriver = (idDriver, vehicleid) => {
+  return axios.put(url + idDriver, {
+    vehicle: vehicleid,
+  });
+};
+
+const getMediaObject = (identity) => {
+  return axios.get(url + identity);
+};
+
+const putDriverAvatar = (idDriver, avatarId) => {
+  return axios.put(url + idDriver, {
+    avatar: avatarId,
+  });
+};
+
+const putCustomerImage = (idCustomer, imageId) => {
+  return axios.put(url + idCustomer, {
+    image: imageId,
+  });
+};
+
+/**
+ * post a Gestion
+ * @param newGestion object like {
+        driverMessage: String
+        customerMessage: String
+       
+ * }
+ */
+const postGestion = (newGestion) => {
+  return axios.post(url + "/gestions", newGestion);
+};
+
+/**
+ * post a VehicleType
+ * @param newVehicleType object like {
+        vehicleType: String       
+ * }
+ */
+const postVehicleType = (newVehicleType) => {
+  return axios.post(url + "/vehicle_types", newVehicleType);
+};
+
+/**
+ * post a MessageCustomer
+ * @param newMessageCustomer object like {
+        message: String       
+ * }
+ */
+
+const postMessageCustomer = (newMessageCustomer) => {
+  return axios.post(url + "/message_customers", newMessageCustomer);
+};
+
+/**
+ * post a MessageDriver
+ * @param newMessageDriver object like {
+        message: String       
+ * }
+ */
+
+const postMessageDriver = (newMessageDriver) => {
+  return axios.post(url + "/message_drivers", newMessageDriver);
+};
+
+export {
+  postMessageDriver,
+  postMessageCustomer,
+  postVehicleType,
+  postGestion,
+  putCustomerImage,
+  putDriverAvatar,
+  postCustomer,
+  postAdress,
+  postDriver,
+  postDriverDoc,
+  upload,
+  postVehicle,
+  putDriver,
+  postVehicleDoc,
+  getMediaObject,
+};

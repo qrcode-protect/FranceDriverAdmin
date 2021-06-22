@@ -5,25 +5,28 @@ import { FirebaseAuthProvider } from "react-admin-firebase";
 import { HydraAdmin, fetchHydra, hydraDataProvider } from "@api-platform/admin";
 import { parseHydraDocumentation } from "@api-platform/api-doc-parser";
 import { Resource } from "react-admin";
+import { Dashboard, Formulaire } from "./components";
 
 import config from "./config";
-import drivers from "./driver";
-import driverdocs from "./driverdoc";
-import addresses from "./address";
-import customers from "./customer";
-import trips from "./trip";
-import vehicles from "./vehicle";
-import vehicledocs from "./vehicleDoc";
-
-import { Dashboard, Formulaire } from "./components";
 import MyLayout from "./Layout";
 import Theme from "./Theme";
 import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
+
+import drivers from "./driver";
+import driverdocs from "./driverdoc";
+import customers from "./customer";
+import addresses from "./address";
 import mediaObjects from "./mediaObject";
+import trips from "./trip";
+import vehicles from "./vehicle";
+import vehicledocs from "./vehicleDoc";
+import gestions from "./gestion";
+import vehicletypes from "./vehicleType";
+import messagescustomers from "./messageCustomer";
+import messagesdrivers from "./messageDriver";
 
 const entrypoint = process.env.REACT_APP_ENTRY_POINT;
-
 
 firebase.initializeApp(config);
 const authProvider = FirebaseAuthProvider(config);
@@ -55,6 +58,10 @@ function App() {
       <Resource name="trips" {...trips} />
       <Resource name="vehicles" {...vehicles} />
       <Resource name="vehicle_docs" {...vehicledocs} />
+      <Resource name="gestions" {...gestions} />
+      <Resource name="vehicle_types" {...vehicletypes} />
+      <Resource name="message_customers" {...messagescustomers} />
+      <Resource name="message_drivers" {...messagesdrivers} />
     </HydraAdmin>
   );
 }

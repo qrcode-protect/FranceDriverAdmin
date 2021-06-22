@@ -35,11 +35,9 @@ export function DriverDocCreate() {
 
   const [identity, setidentity] = useState("");
   function sendFiles() {
-    console.log("send");
     upload(identity).then((response) => {
       postDriverDoc(response.data["@id"]);
       redirect("/driver_docs");
-      console.log(response);
     });
   }
   return (
@@ -50,7 +48,6 @@ export function DriverDocCreate() {
           <input
             type="file"
             onChange={(e) => {
-              console.log(e.target.files[0]);
               setidentity(e.target.files[0]);
             }}
             accept="file"
