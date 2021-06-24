@@ -14,7 +14,7 @@ import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 
 import drivers from "./driver";
-import driverDocs from "./driversDoc";
+import driverDocs from "./driverDoc";
 import customers from "./customer";
 import addresses from "./address";
 import mediaObjects from "./mediaObject";
@@ -22,7 +22,7 @@ import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicleDocs from "./vehicleDoc";
 import gestions from "./gestion";
-import vehicleTypes from "./vehicleTypes";
+import vehicleTypes from "./vehicleType";
 import messagesCustomers from "./messageCustomer";
 import messagesDrivers from "./messageDriver";
 
