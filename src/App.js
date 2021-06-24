@@ -17,14 +17,14 @@ import drivers from "./driver";
 import driverDocs from "./driverdoc";
 import customers from "./customer";
 import addresses from "./address";
-import mediaObjects from "./mediaObject";
+import mediaObjects from "./mediaobject";
 import trips from "./trip";
 import vehicles from "./vehicle";
-import vehicleDocs from "./vehicleDoc";
+import vehicleDocs from "./vehicledoc";
 import gestions from "./gestion";
 import vehicleTypes from "./vehicletype";
-import messagesCustomers from "./messageCustomer";
-import messagesDrivers from "./messageDriver";
+import messagesCustomers from "./messagecustomer";
+import messagesDrivers from "./messagedriver";
 
 const entrypoint = process.env.REACT_APP_ENTRY_POINT;
 
