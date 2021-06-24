@@ -22,7 +22,7 @@ import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicleDocs from "./vehicleDoc";
 import gestions from "./gestion";
-import vehicleTypes from "./vehicleType";
+import vehicleTypes from "./vehicleTypes";
 import messagesCustomers from "./messageCustomer";
 import messagesDrivers from "./messageDriver";
 
