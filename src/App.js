@@ -14,17 +14,17 @@ import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 
 import drivers from "./driver";
-import driverDocs from "./driverdoc";
+import driverDocs from "./driverDoc";
 import customers from "./customer";
 import addresses from "./address";
-import mediaObjects from "./mediaobject";
+import mediaObjects from "./mediaObject";
 import trips from "./trip";
 import vehicles from "./vehicle";
-import vehicleDocs from "./vehicledoc";
+import vehicleDocs from "./vehicleDoc";
 import gestions from "./gestion";
-import vehicleTypes from "./vehicletype";
-import messagesCustomers from "./messagecustomer";
-import messagesDrivers from "./messagedriver";
+import vehicleTypes from "./vehicleType";
+import messagesCustomers from "./messageCustomer";
+import messagesDrivers from "./messageDriver";
 
 const entrypoint = process.env.REACT_APP_ENTRY_POINT;
 
