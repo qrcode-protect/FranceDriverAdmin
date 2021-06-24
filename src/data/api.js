@@ -160,6 +160,7 @@ const postVehicleType = (newVehicleType) => {
  * @param newMessageCustomer object like {
         message: String
         customerId: String
+        readed: Boolean
         createdAt: Date   
 
  * }

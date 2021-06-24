@@ -14,15 +14,15 @@ import CustomRoutes from "./CustomRoutes";
 import LoginPage from "./LoginPage";
 
 import drivers from "./driver";
-import driverdocs from "./driverDoc";
+import driverDocs from "./driverdoc";
 import customers from "./customer";
 import addresses from "./address";
-// import mediaObjects from "./mediaObject";
+import mediaObjects from "./mediaObject";
 import trips from "./trip";
 import vehicles from "./vehicle";
 import vehicleDocs from "./vehicleDoc";
 import gestions from "./gestion";
-import vehicleTypes from "./vehicleType";
+import vehicleTypes from "./vehicletype";
 import messagesCustomers from "./messageCustomer";
 import messagesDrivers from "./messageDriver";
 
@@ -51,10 +51,10 @@ function App() {
       customRoutes={CustomRoutes}
     >
       <Resource name="drivers" {...drivers} />
-      <Resource name="driver_docs" {...driverdocs} />
+      <Resource name="driver_docs" {...driverDocs} />
       <Resource name="customers" {...customers} />
       <Resource name="addresses" {...addresses} />
-      <Resource name="media_objects" />
+      <Resource name="media_objects" {...mediaObjects} />
       <Resource name="trips" {...trips} />
       <Resource name="vehicles" {...vehicles} />
       <Resource name="vehicle_docs" {...vehicleDocs} />
