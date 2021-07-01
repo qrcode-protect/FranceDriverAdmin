@@ -13,7 +13,7 @@ const sendMessage = (id) => {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     data: qs.stringify({
-      topic: "http://104.155.24.90:8000/customers/" + id,
+      topic: "http://104.155.24.90:8000/customers/" + id + "/message",
     }),
   })
     .then(function (response) {
