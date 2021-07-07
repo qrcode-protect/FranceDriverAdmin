@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Switch from "@material-ui/core/Switch";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { postAdress, postCustomer, upload } from "../data/api";
@@ -33,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  inputmargin: {
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 10,
+  },
 }));
 
 export function CustomerCreate() {
@@ -47,6 +53,8 @@ export function CustomerCreate() {
       lastName: "",
       idfirebase: "",
       phoneNumber: "",
+      deviceType: "",
+      gender: Boolean,
       createdAt: Date,
       updatedAt: Date,
       address: "",
@@ -80,6 +88,7 @@ export function CustomerCreate() {
               setfiles(e.target.files[0]);
             }}
             accept="image/png, image/jpeg"
+            className={classes.inputmargin}
             multiple
           />
           <form onSubmit={formik.handleSubmit} className={classes.contentCard}>
@@ -117,6 +126,26 @@ export function CustomerCreate() {
               name="phoneNumber"
               label="Phone Number"
               value={formik.values.phoneNumber}
+              onChange={formik.handleChange}
+              variant="filled"
+              required
+            />
+
+            <TextField
+              id="deviceType"
+              name="deviceType"
+              label="currency type"
+              value={formik.values.deviceType}
+              onChange={formik.handleChange}
+              variant="filled"
+              required
+            />
+
+            <Switch
+              id="gender"
+              name="gender"
+              label="Genre"
+              value={formik.values.gender}
               onChange={formik.handleChange}
               variant="filled"
               required

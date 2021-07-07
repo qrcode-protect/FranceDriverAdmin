@@ -9,7 +9,7 @@ export const VehicleList = (props) => (
       <TextField source="color" />
       <TextField source="model" />
       <TextField source="modelYear" />
-      <TextField source="vehicleDoc" />
+      {/* <TextField source="vehicleDoc" /> */}
 
       <EditButton />
     </Datagrid>

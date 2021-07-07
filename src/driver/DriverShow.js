@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import VehicleCreate from "../vehicle/VehicleCreate";
 import { GetImageUrl } from "../helpers/helper";
-
 import {
   ReferenceField,
   Show,
@@ -11,7 +10,10 @@ import {
   TabbedShowLayout,
   TextField,
 } from "react-admin";
-import DriverEditAvatar from "./DriverEditAvatar";
+import DriverEditAvatar from "./driverEdit/DriverEditAvatar";
+import DriverEditLicence from "./driverEdit/DriverEditLicence";
+import DriverEditIdentity from "./driverEdit/DriverEditIdentity";
+import DriverEditVtcCard from "./driverEdit/DriverEditVtcCard";
 
 const IsVehicle = ({ record }) => {
   let data = record.vehicle;
@@ -48,6 +50,7 @@ export function DriverShow(props) {
           <TextField source="firstName" />
           <TextField source="lastName" />
           <TextField source="phoneNumber" />
+          <TextField source="status" />
         </Tab>
         <Tab label="Address" path="addresses">
           <h4>Street</h4>
@@ -90,6 +93,36 @@ export function DriverShow(props) {
         </Tab>
         <Tab label="Documents" path="driver_docs">
           <ReferenceField
+            source="licence"
+            label="Licence"
+            reference="media_objects"
+            link={false}
+          >
+            <GetImageUrl />
+          </ReferenceField>
+          <DriverEditLicence />
+
+          <ReferenceField
+            source="identity"
+            label="Identity"
+            reference="media_objects"
+            link={false}
+          >
+            <GetImageUrl />
+          </ReferenceField>
+          <DriverEditIdentity />
+
+          <ReferenceField
+            source="vtcCard"
+            label="VtcCard"
+            reference="media_objects"
+            link={false}
+          >
+            <GetImageUrl />
+          </ReferenceField>
+          <DriverEditVtcCard />
+
+          <ReferenceField
             source="driverDoc"
             reference="driver_docs"
             addLabel={false}
@@ -97,10 +130,6 @@ export function DriverShow(props) {
           >
             <TextField source="id" />
           </ReferenceField>
-          <Button variant="outlined" className={classes.button}>
-            Edit
-            <TextField source="id" />
-          </Button>
         </Tab>
         <Tab label="Vehicle" path="vehicles">
           <h4>Vehicle Number</h4>

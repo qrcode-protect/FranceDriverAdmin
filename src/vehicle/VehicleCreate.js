@@ -13,8 +13,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import { postVehicleDoc, postVehicle, putDriver } from "../data/api";
+import { postVehicle, putDriver, upload } from "../data/api";
 import { useRedirect } from "react-admin";
+import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   contentForm: {
@@ -52,7 +53,7 @@ export function VehicleCreate({ driverId }) {
   const redirect = useRedirect();
   const [showDialog, setShowDialog] = useState(false);
   const [send, setSend] = useState(false);
-  const [files, setFiles] = useState([]);
+  const [documentionOne, setDocumentionOne] = useState("");
   const handleClick = () => {
     setShowDialog(true);
   };
@@ -66,14 +67,24 @@ export function VehicleCreate({ driverId }) {
       color: "",
       model: "",
       modelYear: "",
-      vehicleDoc: "",
+      documentionOne: "",
     },
 
     onSubmit: (values) => {
       setSend(true);
 
-      postVehicleDoc(files).then((resp) => {
-        values.vehicleDoc = resp.data["@id"];
+      // axios
+      // .all([upload(documentionOne), postVehicle(values)])
+      // .then((response) => {
+      //   values.documentionOne = response[0].data["@id"];
+      //   values.vehicle = response[1].data["@id"];
+      //   postVehicle(values).then((response) => {
+      //     putDriver(driverId, response.data["@id"]);
+      //     redirect("/drivers");
+      //   });
+      // });
+      axios.all([upload(documentionOne)]).then((resp) => {
+        values.documentionOne = resp["0"].data["@id"];
         postVehicle(values).then((response) => {
           putDriver(driverId, response.data["@id"]);
           redirect("/drivers");
@@ -142,7 +153,22 @@ export function VehicleCreate({ driverId }) {
 
             <div>
               <div>
-                <label for="vtcCard">Insurance Card : </label>
+                <label>Document n°1</label>
+                <input
+                  type="file"
+                  id="documentionOne"
+                  name="documentionOne"
+                  onChange={(e) => {
+                    setDocumentionOne(e.target.files[0]);
+                  }}
+                  accept="image/png, image/jpeg"
+                  className={classes.inputmargin}
+                  required
+                />
+              </div>
+
+              {/* <div>
+                <label for="vehicleRegistrationCard">Insurance Card : </label>
                 <input
                   type="file"
                   onChange={(e) => {
@@ -153,7 +179,7 @@ export function VehicleCreate({ driverId }) {
               </div>
 
               <div>
-                <label for="vtcCard">Registration Card : </label>
+                <label for="insuranceCard">Registration Card : </label>
                 <input
                   type="file"
                   onChange={(e) => {
@@ -161,7 +187,7 @@ export function VehicleCreate({ driverId }) {
                   }}
                   accept="file"
                 />
-              </div>
+              </div> */}
             </div>
 
             <DialogActions className={classes.contentButton}>

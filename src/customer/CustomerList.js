@@ -11,6 +11,9 @@ export const CustomerList = (props) => (
       <TextField source="firstName" />
       <TextField source="lastName" />
       <TextField source="deviceType" />
+      <TextField source="gender" />
+      <TextField source="phoneNumber" />
+      <TextField source="email" />
     </Datagrid>
   </List>
 );

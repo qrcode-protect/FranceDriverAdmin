@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { List, Datagrid, TextField } from "react-admin";
 import { useFormik } from "formik";
-import { CustumTextField } from "../messageCustomer/CustumTextField";
+import { CustumTextField } from "../helpers/CustumTextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { postMessageDriver } from "../data/api";
 
 import SendIcon from "@material-ui/icons/Send";
+import { sendMessage } from "../data/mercure";
 
 const useStyles = makeStyles((theme) => ({
   details: {
@@ -48,13 +49,17 @@ export function MessageDriverList(props) {
     initialValues: {
       message: "",
       driverId: "",
+      readed: false,
       createdAt: Date,
     },
     onSubmit: (values) => {
       setSend(true);
       postMessageDriver(values).then((response) => {
+        sendMessage(values.driverId).then((resp) => {
+          console.log(resp);
+        });
         setSend(false);
-        refresh();
+        formik.resetForm();
       });
     },
   });
@@ -81,9 +86,11 @@ export function MessageDriverList(props) {
                     id="driverId"
                     name="driverId"
                     multiline
+                    value={formik.values.driverId}
                     onChange={formik.handleChange}
                     placeholder="id driver "
                     variant="filled"
+                    required
                   />
                   <CustumTextField
                     id="message"
@@ -91,9 +98,11 @@ export function MessageDriverList(props) {
                     label="Multiline"
                     multiline
                     rows={10}
+                    value={formik.values.message}
                     onChange={formik.handleChange}
                     placeholder="Quel message voulez vous envoyer"
                     variant="filled"
+                    required
                   />
                   <CustumTextField
                     id="createdAt"
@@ -133,6 +142,7 @@ export function MessageDriverList(props) {
           <TextField source="message" />
           <TextField source="driverId" />
           <TextField source="createdAt" />
+          <TextField source="readed" />
         </Datagrid>
       </List>
     </div>

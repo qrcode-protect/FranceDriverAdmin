@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import { List, Datagrid, TextField } from "react-admin";
-import { CustumTextField } from "./CustumTextField";
+import { CustumTextField } from "../helpers/CustumTextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
@@ -85,19 +85,18 @@ export function MessageCustomerList(props) {
                     multiline
                     value={formik.values.customerId}
                     onChange={formik.handleChange}
-                    placeholder="id driver "
+                    placeholder="id customer "
                     variant="filled"
                     required
                   />
                   <CustumTextField
                     id="message"
                     name="message"
-                    label="Multiline"
+                    label="Quel message voulez vous envoyer"
                     multiline
                     value={formik.values.message}
                     rows={10}
                     onChange={formik.handleChange}
-                    placeholder="Quel message voulez vous envoyer"
                     variant="filled"
                     required
                   />

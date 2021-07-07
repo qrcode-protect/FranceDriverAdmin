@@ -17,6 +17,29 @@ export const DriverList = (props) => (
       <ReferenceField source="avatar" label="Avatar" reference="media_objects">
         <GetAvatarUrl />
       </ReferenceField>
+      <ReferenceField
+        source="licence"
+        label="Licence"
+        reference="media_objects"
+      >
+        <GetAvatarUrl />
+      </ReferenceField>
+
+      <ReferenceField
+        source="identity"
+        label="Identity"
+        reference="media_objects"
+      >
+        <GetAvatarUrl />
+      </ReferenceField>
+
+      <ReferenceField
+        source="vtcCard"
+        label="VtcCard"
+        reference="media_objects"
+      >
+        <GetAvatarUrl />
+      </ReferenceField>
       <TextField source="firstName" />
       <TextField source="lastName" />
       <BooleanField source="status" />

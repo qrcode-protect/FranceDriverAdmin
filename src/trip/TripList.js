@@ -15,6 +15,7 @@ export const TripList = (props) => (
       <ReferenceField source="customer" reference="customers">
         <TextField source="lastName" />
       </ReferenceField>
+      <TextField source="travelTime" />
       <TextField source="status" />
     </Datagrid>
   </List>

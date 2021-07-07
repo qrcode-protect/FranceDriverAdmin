@@ -5,7 +5,7 @@ import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
-import { postAdress, postDriver, postDriverDoc, upload } from "../data/api";
+import { postAdress, postDriver, upload } from "../data/api";
 import { useRedirect } from "react-admin";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -31,11 +31,19 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: 20,
   },
+  inputmargin: {
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 10,
+  },
 }));
 
 export function DriverCreate() {
   const classes = useStyles();
   const [avatar, setAvatar] = useState("");
+  const [licence, setLicence] = useState("");
+  const [identity, setIdentity] = useState("");
+  const [vtcCard, setVtcCard] = useState("");
   const [send, setSend] = useState(false);
   const [files, setFiles] = useState([]);
   const redirect = useRedirect();
@@ -49,20 +57,31 @@ export function DriverCreate() {
       createdAt: Date,
       updatedAt: Date,
       avatar: "",
+      licence: "",
+      identity: "",
+      vtcCard: "",
       address: "",
       street: "",
       city: "",
       postalCode: "",
-      driverDoc: "",
     },
     onSubmit: (values) => {
       setSend(true);
       axios
-        .all([upload(avatar), postAdress(values), postDriverDoc(files)])
+        .all([
+          upload(avatar),
+          postAdress(values),
+          upload(licence),
+          upload(identity),
+          upload(vtcCard),
+        ])
         .then((response) => {
           values.avatar = response[0].data["@id"];
           values.address = response[1].data["@id"];
-          values.driverDoc = response[2].data["@id"];
+          values.licence = response[2].data["@id"];
+          values.identity = response[3].data["@id"];
+          values.vtcCard = response[4].data["@id"];
+
           postDriver(values);
           redirect("/drivers");
         });
@@ -95,7 +114,9 @@ export function DriverCreate() {
                       setAvatar(e.target.files[0]);
                     }}
                     accept="image/png, image/jpeg"
+                    className={classes.inputmargin}
                   />
+
                   <TextField
                     id="firstName"
                     name="firstName"
@@ -211,26 +232,50 @@ export function DriverCreate() {
               </AccordionSummary>
               <AccordionDetails>
                 <div>
-                  <label for="identity">Identity: </label>
-                  <input
-                    id="identity"
-                    type="file"
-                    onChange={(e) => {
-                      setFiles([...files, e.target.files[0]]);
-                    }}
-                    accept="file"
-                  />
+                  <div>
+                    <label>Licence</label>
+                    <input
+                      type="file"
+                      id="licence"
+                      name="licence"
+                      onChange={(e) => {
+                        setLicence(e.target.files[0]);
+                      }}
+                      accept="image/png, image/jpeg"
+                      className={classes.inputmargin}
+                      required
+                    />
+                  </div>
 
-                  <label for="vtcCard">VtcCard: </label>
+                  <div>
+                    <label>Identity</label>
+                    <input
+                      type="file"
+                      id="identity"
+                      name="identity"
+                      onChange={(e) => {
+                        setIdentity(e.target.files[0]);
+                      }}
+                      accept="image/png, image/jpeg"
+                      className={classes.inputmargin}
+                      required
+                    />
+                  </div>
 
-                  <input
-                    id="vtcCard"
-                    type="file"
-                    onChange={(e) => {
-                      setFiles([...files, e.target.files[0]]);
-                    }}
-                    accept="file"
-                  />
+                  <div>
+                    <label>VtcCard</label>
+                    <input
+                      type="file"
+                      id="vtcCard"
+                      name="vtcCard"
+                      onChange={(e) => {
+                        setVtcCard(e.target.files[0]);
+                      }}
+                      accept="image/png, image/jpeg"
+                      className={classes.inputmargin}
+                      required
+                    />
+                  </div>
                 </div>
               </AccordionDetails>
             </Accordion>

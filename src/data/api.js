@@ -9,6 +9,8 @@ const url = process.env.REACT_APP_ENTRY_POINT;
         lastName: String
         idfirebase: String
         phoneNumber:String
+        deviceType:String
+        gender:Boolean
         createdAt: Date
         updatedAt : Date
         email: String
@@ -66,20 +68,20 @@ const upload = (file) => {
   });
 };
 
-const postDriverDoc = (files) => {
-  var tabFileUpload = [];
-  for (let i = 0; i < Object.keys(files).length; i++) {
-    tabFileUpload[i] = upload(files[i]);
-  }
-  return axios.all(tabFileUpload).then((response) => {
-    var identity = response[0].data["@id"];
-    var vtcCard = response[1].data["@id"];
-    return axios.post(url + "/driver_docs", {
-      identity: identity,
-      vtcCard: vtcCard,
-    });
-  });
-};
+// const postDriverDoc = (files) => {
+//   var tabFileUpload = [];
+//   for (let i = 0; i < Object.keys(files).length; i++) {
+//     tabFileUpload[i] = upload(files[i]);
+//   }
+//   return axios.all(tabFileUpload).then((response) => {
+//     var identity = response[0].data["@id"];
+//     var vtcCard = response[1].data["@id"];
+//     return axios.post(url + "/driver_docs", {
+//       identity: identity,
+//       vtcCard: vtcCard,
+//     });
+//   });
+// };
 
 /**
  * post an vehicle
@@ -127,11 +129,41 @@ const putDriverAvatar = (idDriver, avatarId) => {
   });
 };
 
+const putDriverLicence = (idDriver, licenceId) => {
+  return axios.put(url + idDriver, {
+    licence: licenceId,
+  });
+};
+const putDriverIdentity = (idDriver, identityId) => {
+  return axios.put(url + idDriver, {
+    identity: identityId,
+  });
+};
+
+const putDriverVtcCard = (idDriver, vtcCardId) => {
+  return axios.put(url + idDriver, {
+    vtcCard: vtcCardId,
+  });
+};
+
 const putCustomerImage = (idCustomer, imageId) => {
   return axios.put(url + idCustomer, {
     image: imageId,
   });
 };
+
+const putVehicleDocOne = (idDriver, documentionOneId) => {
+  return axios.put(url + idDriver, {
+    documentionOne: documentionOneId,
+  });
+};
+
+// const putDriverDocImage = (idDriver, identityId) => {
+//   return axios.put(url + idDriver, {
+//     identity: identityId,
+//      vtcCard: vtcCardId,
+//   });
+// };
 
 /**
  * post a Gestion
@@ -176,6 +208,7 @@ const postMessageCustomer = (newMessageCustomer) => {
         message: String
         driverId: String
         createdAt: Date
+        readed: Boolean
 
  * }
  */
@@ -185,6 +218,11 @@ const postMessageDriver = (newMessageDriver) => {
 };
 
 export {
+  putVehicleDocOne,
+  putDriverVtcCard,
+  putDriverIdentity,
+  putDriverLicence,
+  // putDriverDocImage,
   postMessageDriver,
   postMessageCustomer,
   postVehicleType,
@@ -194,7 +232,7 @@ export {
   postCustomer,
   postAdress,
   postDriver,
-  postDriverDoc,
+  // postDriverDoc,
   upload,
   postVehicle,
   putDriver,
