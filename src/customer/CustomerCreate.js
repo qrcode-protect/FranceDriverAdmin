@@ -140,16 +140,20 @@ export function CustomerCreate() {
               variant="filled"
               required
             />
-
-            <Switch
-              id="gender"
-              name="gender"
-              label="Genre"
-              value={formik.values.gender}
-              onChange={formik.handleChange}
-              variant="filled"
-              required
-            />
+            <div>
+              <label>Homme</label>
+              <Switch
+                id="gender"
+                name="gender"
+                label="Genre"
+                color="default"
+                value={formik.values.gender}
+                onChange={formik.handleChange}
+                variant="filled"
+                required
+              />
+              <label>Femme</label>
+            </div>
 
             <TextField
               id="email"

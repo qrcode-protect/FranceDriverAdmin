@@ -41,7 +41,6 @@ export function CustomerShow(props) {
           <TextField source="phoneNumber" label="Téléphone" />
           <TextField source="idfirebase" label="id firebase" />
           <TextField source="deviceType" label="Type de devise" />
-          <TextField source="gender" label="genre" />
           <TextField source="email" label="email" />
 
           <TextField source="updatedAt" label="Mis à jour" />

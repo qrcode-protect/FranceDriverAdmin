@@ -28,7 +28,7 @@ export const CustomerEdit = (props) => {
         <TextInput multiline source="lastName" />
         <TextInput multiline source="phoneNumber" />
         <TextInput multiline source="deviceType" />
-        <BooleanInput label="gender" source="gender" />
+        {/* <BooleanInput label="gender" source="gender" /> */}
         <DateInput source="updateAt" />
         <TextInput multiline source="idfirebase" />
         <TextInput multiline source="email" />

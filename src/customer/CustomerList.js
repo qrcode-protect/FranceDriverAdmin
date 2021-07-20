@@ -1,5 +1,11 @@
 import React from "react";
-import { List, Datagrid, TextField, ReferenceField } from "react-admin";
+import {
+  List,
+  EditButton,
+  Datagrid,
+  TextField,
+  ReferenceField,
+} from "react-admin";
 import { GetAvatarUrl } from "../helpers/helper";
 
 export const CustomerList = (props) => (
@@ -11,9 +17,9 @@ export const CustomerList = (props) => (
       <TextField source="firstName" />
       <TextField source="lastName" />
       <TextField source="deviceType" />
-      <TextField source="gender" />
       <TextField source="phoneNumber" />
       <TextField source="email" />
+      <EditButton />
     </Datagrid>
   </List>
 );
